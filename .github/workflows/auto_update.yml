@@ -28,16 +28,15 @@ jobs:
         curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_amd64.tgz
         ls
         
-        
-    - name: Uploading...
+    - name: Create Release and Upload Release Asset
+      uses: softprops/action-gh-release@v1
       if: ${{ env.http_code }} == "404"
-      id: upload-release-asset
-      uses: actions/upload-release-asset@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
-        upload_url: ${{ github.event.release.upload_url }}
-        asset_path: ./tailscale_${{env.latest_version}}_amd64.tgz
-        asset_name: tailscale_${{env.latest_version}}_amd64.tgz
-        asset_content_type: application/gzip
+        tag_name: ${{env.latest_version}}
+        name: ${{env.latest_version}}
+        body: ${{env.latest_version}} 已同步.
+        draft: false
+        prerelease: false
+        files: |
+          tailscale_${{env.latest_version}}_amd64.tgz
         
