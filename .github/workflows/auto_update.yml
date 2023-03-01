@@ -1,6 +1,7 @@
 on:
  schedule:
    - cron:  "20,50 0-14,23 * * *"
+ workflow_dispatch:
  watch:
     types: [started]
 
@@ -11,7 +12,7 @@ jobs:
     - name: repo-sync
       run: |
         latest_version=`wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
-        http_code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 -o tailscale_${latest_version}_amd64.tgz https://github.com/${{ github.repository }}/archive/refs/tags/${latest_version}.zip)
+        http_code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 -o tailscale_${{latest_version}}_amd64.tgz https://github.com/${{ github.repository }}/archive/refs/tags/${{latest_version}}.zip)
         result=$(echo $http_code | grep "200")
         echo $result
 
