@@ -1,7 +1,7 @@
 #!/bin/sh
 
-opkg update
-opkg install libustream-openssl ca-bundle kmod-tun
+# opkg update
+opkg install libustream-openssl ca-bundle kmod-tun -y
 
 wget https://cdn.jsdelivr.net/gh/cyz0105/tailscale-openwrt@main/tailscale-openwrt.tgz
 tar x -zvC / -f tailscale-openwrt.tgz
