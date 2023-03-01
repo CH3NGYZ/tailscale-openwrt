@@ -10,17 +10,15 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: repo-sync
-      env:
-          latest_version: wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2
       run: |
-        http_code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 -o tailscale_${{ env.latest_version }}_amd64.tgz https://github.com/${{ github.repository }}/archive/refs/tags/${{ env.latest_version }}.zip)
+        latest_version=`wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
+        curl -sL -w %{http_code} https://github.com/${{ github.repository }}/archive/refs/tags/$latest_version.zip
         result=$(echo $http_code | grep "200")
         echo $result
 
         # if [[ "$(test_connect $1)" -eq "200" ]]; then
         
         # wget https://github.com/${{ github.repository }}/archive/refs/tags/${{ env.latest_version }}.zip 
-        echo ${{ env.latest_version }}
         
         
         ls
