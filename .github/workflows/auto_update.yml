@@ -1,0 +1,14 @@
+on:
+ schedule:
+   - cron:  "20,50 0-14,23 * * *"
+ watch:
+    types: [started]
+
+jobs:
+  repo-sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: repo-sync
+      run: |
+        latest_version=`wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
+        echo $latest_version
