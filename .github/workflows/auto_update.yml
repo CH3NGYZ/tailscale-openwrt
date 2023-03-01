@@ -11,8 +11,8 @@ jobs:
     - name: repo-sync
       run: |
         latest_version=`wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
-        http_code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 -o https://github.com/${{ github.ACTION_REPOSITORY }}/archive/refs/tags/$latest_version.zip)
-        result=$(echo $http_code | grep "200")
+        http_code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 -o https://github.com/$GITHUB_ACTION_REPOSITORY/archive/refs/tags/$latest_version.zip)
+        # result=$(echo $http_code | grep "200")
         echo $(echo $http_code | grep "200")
 
         # if [[ "$(test_connect $1)" -eq "200" ]]; then
