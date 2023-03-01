@@ -17,7 +17,7 @@ jobs:
 
         # if [[ "$(test_connect $1)" -eq "200" ]]; then
         
-        wget https://github.com/${{ GITHUB_ACTION_REPOSITORY }}/archive/refs/tags/$latest_version.zip 
+        wget https://github.com/${{ github.repository }}/archive/refs/tags/$latest_version.zip 
         echo $latest_version
         
         
