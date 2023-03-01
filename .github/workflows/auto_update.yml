@@ -19,7 +19,7 @@ jobs:
       run: |
         code=`curl -I -m 10 -o /dev/null -s -w %{http_code} 'https://codeload.github.com/cyz0105/tailscale-openwrt/zip/refs/tags/${{ env.latest_version }}'`
         echo "http_code=$code"  >> $GITHUB_ENV
-        echo $code
+        echo ${{ env.http_code }}
         
     - name: download
       if: ${{ env.http_code }} == "404"
