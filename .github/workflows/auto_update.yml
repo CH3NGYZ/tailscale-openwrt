@@ -16,7 +16,7 @@ jobs:
         
     - name: check_release_if_exist
       run: |
-        code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 'https://github.com/cyz0105/tailscale-openwrt/archive/refs/tags/${{ env.latest_version }}.zip')
+        code=$(wget -O- 'https://github.com/cyz0105/tailscale-openwrt/archive/refs/tags/${{ env.latest_version }}.zip' | grep 404 | head -1 | cut -d':' -f 1)
         result=$(echo $code | grep "200")
         if [[ "$result" != "" ]]; then
           echo "is_exist=false" >> $GITHUB_ENV
