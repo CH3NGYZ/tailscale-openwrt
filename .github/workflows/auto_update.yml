@@ -17,12 +17,12 @@ jobs:
     - name: check_release_if_exist
       run: |
         code=`curl -I -m 10 -o /dev/null -s -w %{http_code} 'https://codeload.github.com/cyz0105/tailscale-openwrt/zip/refs/tags/${{ env.latest_version }}'`
-        result=$(echo $code | grep "200")
-        if [[ "$result" != "" ]]; then
-          echo "is_exist=false" >> $GITHUB_ENV
-        else
-          echo "is_exist=true" >> $GITHUB_ENV
-        fi
+        #result=$(echo $code | grep "200")
+        #if [[ "$result" != "" ]]; then
+        #  echo "is_exist=false" >> $GITHUB_ENV
+        #else
+        #  echo "is_exist=true" >> $GITHUB_ENV
+        #fi
     - name: download
       if: ${{ env.is_exist }}
       run: |
