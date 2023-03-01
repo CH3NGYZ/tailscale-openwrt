@@ -12,13 +12,13 @@ jobs:
     - name: repo-sync
       run: |
         latest_version=`wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
-        curl -sL -w %{http_code} https://github.com/${{ github.repository }}/archive/refs/tags/$latest_version.zip
+        curl -sL -w %{http_code} 'https://github.com/${{ github.repository }}/archive/refs/tags/$latest_version.zip'
         result=$(echo $http_code | grep "200")
         echo $result
 
-        # if [[ "$(test_connect $1)" -eq "200" ]]; then
-        
-        # wget https://github.com/${{ github.repository }}/archive/refs/tags/${{ env.latest_version }}.zip 
-        
-        
-        ls
+        if [[ "$(test_connect $1)" -eq "404" ]]; then
+          echo 404未找到文件, 新下载...
+          curl -sL 'https://pkgs.tailscale.com/stable/tailscale_${latest_version}_amd64.tgz'
+          ls
+        fi
+     
