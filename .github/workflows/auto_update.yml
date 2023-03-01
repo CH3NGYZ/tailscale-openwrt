@@ -13,7 +13,7 @@ jobs:
       env:
           latest_version: wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2
       run: |
-        http_code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 -o tailscale_${{latest_version}}_amd64.tgz https://github.com/${{ github.repository }}/archive/refs/tags/${{ env.latest_version }}.zip)
+        http_code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 -o tailscale_${{ env.latest_version }}_amd64.tgz https://github.com/${{ github.repository }}/archive/refs/tags/${{ env.latest_version }}.zip)
         result=$(echo $http_code | grep "200")
         echo $result
 
