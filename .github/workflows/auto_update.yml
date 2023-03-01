@@ -9,17 +9,23 @@ jobs:
   repo-sync:
     runs-on: ubuntu-latest
     steps:
-    - name: repo-sync
+    - name: check_latest_version
       run: |
-        latest_version=`wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2`
-        code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 'https://github.com/cyz0105/tailscale-openwrt/archive/refs/tags/${latest_version}.zip')
-        result=$(echo $code | grep "200")
+        latest_version=$(wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2)
+        echo "latest_version=$latest_version"  >> $GITHUB_ENV
         
+    - name: check_release_if_exist
+      run: |
+        code=$(curl -sL -w %{http_code} --connect-timeout 20 --retry 5 'https://github.com/cyz0105/tailscale-openwrt/archive/refs/tags/${{ env.latest_version }}.zip')
+        result=$(echo $code | grep "200")
         if [[ "$result" != "" ]]; then
-          echo -e "状态码200,存在不下载√√√√√"
+          echo "is_exist=false" >> $GITHUB_ENV
         else
-          echo -e "状态码$code,准备下载tgz包"
-          curl -sL 'https://pkgs.tailscale.com/stable/tailscale_${latest_version}_amd64.tgz'
-          ls
+          echo "is_exist=true" >> $GITHUB_ENV
         fi
-         
+    - name: download
+      if: ${{ env.is_exist }}
+      run: |
+        echo "下载文件代码块"
+        
+        
