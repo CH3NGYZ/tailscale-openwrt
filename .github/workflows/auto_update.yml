@@ -13,15 +13,19 @@ jobs:
       run: |
         latest_version=$(wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2)
         echo "latest_version=$latest_version"  >> $GITHUB_ENV
+        echo $latest_version
         
     - name: check_release_if_exist
       run: |
         code=`curl -I -m 10 -o /dev/null -s -w %{http_code} 'https://codeload.github.com/cyz0105/tailscale-openwrt/zip/refs/tags/${{ env.latest_version }}'`
         echo "http_code=$code"  >> $GITHUB_ENV
+        echo $code
         
     - name: download
       if: ${{ env.http_code == "404" }} 
       run: |
-        echo "下载文件代码块"
+        echo "下载文件"
+        wget -O- https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_amd64.tgz
+        ls
         
         
