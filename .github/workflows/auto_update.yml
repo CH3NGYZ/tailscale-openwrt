@@ -29,3 +29,14 @@ jobs:
         ls
         
         
+    - name: Uploading...
+      if: ${{ env.http_code }} == "404"
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ github.event.release.upload_url }}
+        asset_path: ./tailscale_${{env.latest_version}}_amd64.tgz
+        asset_name: tailscale_${{env.latest_version}}_amd64.tgz
+        asset_content_type: application/gzip
+        
