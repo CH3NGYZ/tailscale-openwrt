@@ -20,5 +20,6 @@ jobs:
         else
           echo -e "状态码$code,准备下载tgz包"
           curl -sL 'https://pkgs.tailscale.com/stable/tailscale_${latest_version}_amd64.tgz'
+          ls
         fi
          
