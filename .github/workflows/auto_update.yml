@@ -22,7 +22,7 @@ jobs:
         echo $code
         
     - name: download
-      if: ${{ env.http_code == "404" }} 
+      if: ${{ env.http_code }} == "404"
       run: |
         echo "下载文件"
         wget -O- https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_amd64.tgz
