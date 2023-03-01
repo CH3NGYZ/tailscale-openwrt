@@ -2,7 +2,7 @@
 
 # opkg update
 opkg install libustream-openssl ca-bundle kmod-tun
-rm -rf tailscale*
+rm -rf tailscale-openwrt*
 wget https://cdn.jsdelivr.net/gh/cyz0105/tailscale-openwrt@main/tailscale-openwrt.tgz
 tar x -zvC / -f tailscale-openwrt.tgz
 /etc/init.d/tailscale enable
