@@ -6,7 +6,7 @@ on:
     types: [started]
 
 jobs:
-  repo-sync:
+  sync_tailscale_latest_version:
     runs-on: ubuntu-latest
     steps:
     - name: check_latest_version
