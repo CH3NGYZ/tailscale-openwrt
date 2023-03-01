@@ -20,7 +20,7 @@ jobs:
         echo "http_code=$code"  >> $GITHUB_ENV
         
     - name: download
-      if: ${{ env.http_code }} == "404"
+      if: ${{ env.http_code == "404" }} 
       run: |
         echo "下载文件代码块"
         
