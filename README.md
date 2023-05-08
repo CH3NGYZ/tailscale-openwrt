@@ -1,4 +1,6 @@
 # 在openwrt上最简单的tailscale部署方法
+[![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV "Get your own page views count badge on badges.toozhao.com")
+
 ## 在SSH里运行以下命令:
 ### 安装
 ```
