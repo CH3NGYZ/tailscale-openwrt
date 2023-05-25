@@ -31,22 +31,21 @@ reboot
     - 如果`安装`时无法下载，请考虑停止翻墙工具，再安装。
     - 如果`开机`时无法下载，请考虑修改启动脚本`/usr/bin/tailscale`和`/usr/bin/tailscaled` 
       - 以 openclash 为例，在脚本第二行添加禁用翻墙工具的命令：
-        - ```
-          echo "============stop openclash============"
-          uci set openclash.config.enable='0'
-          uci commit openclash
-          /etc/init.d/openclash start
-          echo "============openclash stoped============"
-          ```
+        ```
+        echo "============stop openclash============"
+        uci set openclash.config.enable='0'
+        uci commit openclash
+        /etc/init.d/openclash start
+        echo "============openclash stoped============"
+        ```
       - 将最后一行 `/tmp/tailscale "$@"` 替换为以下命令：
-        - ```
-          /tmp/tailscale "$@" &  #后台运行tailscale
-          echo "============start openclash============"
-          sleep 10
-          uci set openclash.config.enable='1'
-          uci commit openclash
-          /etc/init.d/openclash start
-          echo "============openclash started============"
-          ```
-
+        ```
+        /tmp/tailscale "$@" &  #后台运行tailscale
+        echo "============start openclash============"
+        sleep 10
+        uci set openclash.config.enable='1'
+        uci commit openclash
+        /etc/init.d/openclash start
+        echo "============openclash started============"
+        ```
       - 其他工具请自行搜索 uci 命令。
