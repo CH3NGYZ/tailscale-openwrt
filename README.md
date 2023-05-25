@@ -38,7 +38,7 @@ reboot
         echo "============stop openclash============"
         uci set openclash.config.enable='0'
         uci commit openclash
-        /etc/init.d/openclash start
+        /etc/init.d/openclash stop
         echo "============openclash stoped============"
         ```
       - 将最后一行 `/tmp/tailscale "$@"` 替换为以下命令：
