@@ -27,6 +27,8 @@ jobs:
         echo "下载文件"
         curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_amd64.tgz
         curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_arm64.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_mips.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_arm.tgz
         ls
         
     - name: Create Release and Upload Release Asset
@@ -41,4 +43,6 @@ jobs:
         files: |
           tailscale_${{env.latest_version}}_amd64.tgz
           tailscale_${{env.latest_version}}_arm64.tgz
+          tailscale_${{env.latest_version}}_mips.tgz
+          tailscale_${{env.latest_version}}_arm.tgz
         
