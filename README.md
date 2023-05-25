@@ -11,7 +11,7 @@ wget -O- https://ghproxy.net/https://raw.githubusercontent.com/cyz0105/tailscale
 ```
 
 ### 0x01 卸载
-
+请注意不要在远程连接ssh时卸载，会丢失ssh连接。 Use at your own risk
 ```
 wget -O- https://ghproxy.net/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/uninstall.sh | sh
 ```
