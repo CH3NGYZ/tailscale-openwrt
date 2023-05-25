@@ -25,8 +25,9 @@ reboot
 ### 0x03 troubleshoot
 
 - ghproxy.net无法链接，或链接极慢
-    如果`安装`时无法下载，可能是*openclash*等翻墙工具影响了*ghproxy*，请考虑停止翻墙工具，再安装。
-    如果`开机`时无法下载，可能是*openclash*等翻墙工具影响了*ghproxy*，请考虑修改启动脚本`/usr/bin/tailscale`和`/usr/bin/tailscaled`。
+    1. 如果`安装`时无法下载，可能是*openclash*等翻墙工具影响了*ghproxy*，请考虑停止翻墙工具，再安装
+    2. 如果`开机`时无法下载，可能是*openclash*等翻墙工具影响了*ghproxy*，请考虑修改启动脚本`/usr/bin/tailscale`和`/usr/bin/tailscaled`。
+    
     以openclash为例，在脚本第二行添加禁用翻墙工具的命令：
     ```
     echo "============stop openclash============"
@@ -35,6 +36,7 @@ reboot
     /etc/init.d/openclash start
     echo "============openclash stoped============"
     ```
+    
     将最后一行 `/tmp/tailscale "$@"` 替换为以下命令：
     ```
     /tmp/tailscale "$@" &
@@ -45,5 +47,5 @@ reboot
     /etc/init.d/openclash start
     echo "============openclash started============"
     ```
+    
     其他工具请自行搜索uci命令。
-
