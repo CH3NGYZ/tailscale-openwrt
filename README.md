@@ -26,10 +26,10 @@ reboot
 
 - ghproxy.net 无法链接，或链接极慢
 
-  - 先在其他设备上`curl ghproxy.net`,如果有显示 html 基本结构，则`ghproxy.net`链接正常。
-  - 如果`ghproxy.net`链接正常，则可能是*openclash*等翻墙工具影响了*ghproxy*。 
-    - 如果`安装`时无法下载，请考虑停止翻墙工具，再安装。
-    - 如果`开机`时无法下载，请考虑修改启动脚本`/usr/bin/tailscale`和`/usr/bin/tailscaled` 
+  - 先在其他设备上`curl ghproxy.net`,如果有显示 html 基本结构，则ghproxy链接正常。
+  - 如果ghproxy.net链接正常，则可能是*openclash*等翻墙工具影响了*ghproxy*。 
+    - 如果安装时无法下载，请考虑停止翻墙工具，再安装。
+    - 如果开机时无法下载，请考虑修改启动脚本/usr/bin/tailscale和/usr/bin/tailscaled。 
       - 以 openclash 为例，在脚本第二行添加禁用翻墙工具的命令：
         ```
         echo "============stop openclash============"
@@ -38,7 +38,7 @@ reboot
         /etc/init.d/openclash stop
         echo "============openclash stoped============"
         ```
-      - 将最后一行 `/tmp/tailscale "$@"` 替换为以下命令：
+      - 将最后一行 /tmp/tailscale "$@" 替换为以下命令：
         ```
         /tmp/tailscale "$@" &  #后台运行tailscale
         echo "============start openclash============"
