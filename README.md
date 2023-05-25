@@ -1,4 +1,5 @@
 # 在openwrt上最简单的tailscale部署方法
+## 仅兼容 aarch64、x86-64、mips、armv7l
 [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV "")
 
 ### 只需停止tailscale服务，删除/tmp/tailscale，再运行tailscale up即可自动同步最新版。当然如果直接重启路由器系统，会自动更新最新版。
