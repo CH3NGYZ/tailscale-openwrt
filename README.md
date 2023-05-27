@@ -48,4 +48,20 @@ reboot
         /etc/init.d/openclash start
         echo "============openclash started============"
         ```
-      - 其他工具请自行搜索 uci 命令。
+      - 其他工具请自行搜索 uci 命令。这里提供一个通用方法：
+        - 1 以passwall为例，查找/etc/config下的passwall配置文件，记住这个配置文件的名字passwall。 
+        - 2 ssh输入uci show 配置文件名（uci show passwall），会出现很多配置项，这里找一下有没有enabled之类的关键词，那极有可能就是控制passwall开关的语句 
+        - 3 去管理页面关闭passwall 
+        - 4 打开/etc/config/passwall备用 
+        - 5 去管理页面打开passwall 
+        - 6 再次打开/etc/config/passwall 
+        - 7 可以发现新出现了一条`option enabled '1'`，这一条就是开关passwall的配置。 
+        - 8 即passwall文件中global区块内有个enabled的选项，为“1”则开启，为“0”则关闭。 
+        - 9 在2的结果中找一下符合或类似 `<配置文件名 passwall>.<区块名 global>.<选项名 enabled>=<值>` 的格式的语句，假如我找到了passwall.@global[0].enabled="0"。 
+        - 10 开关命令： 
+          - 开启： 
+            - uci set passwall.@global[0].enabled="1" 
+            - uci commit passwall 
+          - 关闭：  
+            - uci set passwall.@global[0].enabled="0" 
+            - uci commit passwall
