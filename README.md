@@ -65,3 +65,4 @@ reboot
           - 关闭：  
             - uci set passwall.@global[0].enabled="0" 
             - uci commit passwall
+        - more information, pls visit [this page](https://www.cnblogs.com/v5captain/p/16175769.html)
