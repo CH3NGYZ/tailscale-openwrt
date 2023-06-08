@@ -66,4 +66,4 @@ reboot
             - uci set passwall.@global[0].enabled="0" 
             - uci commit passwall
         - more information, pls visit [this page](https://www.cnblogs.com/v5captain/p/16175769.html)
-### 如果好用，麻烦动动小手点个Star，谢谢啦！
+### 如果好用，麻烦动动小手点个Star，谢谢啦！同时star也会触发自动更新脚本，如果点了star，则仓库自动下载最新版tailscale（如果有的话）
