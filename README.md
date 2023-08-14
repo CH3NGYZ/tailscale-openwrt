@@ -37,6 +37,7 @@ reboot
         uci set openclash.config.enable='0'
         uci commit openclash
         /etc/init.d/openclash stop
+        # /etc/rc.d/S99openclash stop
         echo "============openclash stoped============"
         ```
       - 将最后一行 /tmp/tailscale "$@" 替换为以下命令：
@@ -47,6 +48,7 @@ reboot
         uci set openclash.config.enable='1'
         uci commit openclash
         /etc/init.d/openclash start
+        # /etc/rc.d/S99openclash start
         echo "============openclash started============"
         ```
       - 其他工具请自行搜索 uci 命令。这里提供一个通用方法：
