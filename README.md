@@ -1,22 +1,23 @@
 # 在 openwrt 上最简单的 tailscale 部署方法
 # The easiest way to deploy tailscale on openwrt
 ## 仅兼容 aarch64、x86_64、mips、armv7l
+## Only compatible with aarch64, x86_64, mips, armv7l
 
 [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
 
-### 0x00 安装
+### 0x00 安装 Install
 
 ```
 wget -O- https://ghproxy.net/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/install.sh | sh
 ```
 
-### 0x01 卸载
+### 0x01 卸载 Uninstall
 请注意不要在远程连接时卸载，会丢失ssh连接。 Use at your own risk
 ```
 wget -O- https://ghproxy.net/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/uninstall.sh | sh
 ```
 
-### 0x02 更新
+### 0x02 更新 Upgrade
 
 ```
 reboot
