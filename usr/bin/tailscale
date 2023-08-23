@@ -14,10 +14,10 @@ if [ ! -f /tmp/tailscale ]; then
         arch=amd64
     fi
 
-    tailscale_version="1.38.3"
+    tailscale_version="1.48.1"
     latest_version=`wget -O- https://ghproxy.com/https://github.com/cyz0105/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
     if [ "$latest_version" == "" ]; then
-        latest_version="1.38.3"
+        latest_version="1.48.1"
     fi
 
     if [ "$tailscale_version" != "$latest_version" ]; then
