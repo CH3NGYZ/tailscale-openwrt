@@ -7,13 +7,13 @@
 [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
 
 ### 0x00 安装 Install
-
 ```
 wget -O- https://ghproxy.net/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/install.sh | sh
 ```
 
 ### 0x01 卸载 Uninstall
-请注意不要在远程连接时卸载，会丢失ssh连接。 Use at your own risk
+  Please be careful not to uninstall during an ssh connection, as the ssh connection will be lost. Use at your own risk.
+  请注意不要在ssh连接期间卸载，因为ssh连接将丢失。使用风险自负
 ```
 wget -O- https://ghproxy.net/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/uninstall.sh | sh
 ```
