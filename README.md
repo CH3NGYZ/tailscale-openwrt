@@ -8,13 +8,13 @@
 
 ### 0x00 安装
 ```
-wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/install.sh | sh
+wget -O- https://ghproxy.com/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
 
 ### 0x01 卸载
   请注意不要在ssh连接期间卸载，因为ssh连接将丢失。使用风险自负
 ```
-wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
+wget -O- https://ghproxy.com/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
 ```
 
 ### 0x02 更新 Upgrade
