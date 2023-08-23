@@ -2,6 +2,9 @@ name: Run tar.sh on Push and Star
 
 on:
   push:
+    paths:
+      - 'usr/**' # 监视 usr 文件夹及其子文件夹
+      - 'etc/**' # 监视 tmp 文件夹及其子文件夹
     branches:
       - main  # 适当地更改分支名称
   watch:
