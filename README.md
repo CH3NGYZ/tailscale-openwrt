@@ -1,3 +1,4 @@
+# Based on [adyanth](https://github.com/adyanth/openwrt-tailscale-enabler) 
 # 在 openwrt 上最简单的 tailscale 部署方法
 # The easiest way to deploy tailscale on openwrt
 ## 仅兼容 aarch64、x86_64、mips、armv7l
