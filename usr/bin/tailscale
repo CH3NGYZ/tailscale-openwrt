@@ -39,7 +39,7 @@ if [ ! -f /tmp/tailscale ]; then
     mv /tmp/tailscale_$version/* /tmp
     rm -rf /tmp/tailscale_${version}*
 
-    echo "Done!"
+    echo "完成!"
 fi
 
 /tmp/tailscale "$@"
