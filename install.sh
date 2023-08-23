@@ -8,7 +8,7 @@ rm -rf *tailscale*
 rm -rf /tmp/*tailscale*
 
 # 下载安装包
-wget https://ghproxy.net/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/tailscale-openwrt.tgz
+wget https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/tailscale-openwrt.tgz
 
 # 解压
 tar x -zvC / -f tailscale-openwrt.tgz
