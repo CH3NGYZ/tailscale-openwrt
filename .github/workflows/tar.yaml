@@ -23,7 +23,7 @@ jobs:
       run: |
         chmod -R 777 usr/
         chmod -R 777 etc/
-        tar -czvf tailscale-openwrt.tgz usr/ etc/ || tar c -zvf tailscale-openwrt.tgz usr/ etc/
+        tar -pczvf tailscale-openwrt.tgz usr/ etc/ || tar c -pzvf tailscale-openwrt.tgz usr/ etc/
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git add .
