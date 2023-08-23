@@ -1,5 +1,6 @@
 #!/bin/sh
 
+/tmp/tailscale logout
 /etc/init.d/tailscale disable
 /tmp/tailscale down --accept-risk=lose-ssh
 rm -rf /etc/tailscale*
