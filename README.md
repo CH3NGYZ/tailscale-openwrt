@@ -6,16 +6,15 @@
 
 [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
 
-### 0x00 安装 Install
+### 0x00 安装
 ```
-wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/install.sh | sh
+wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
 
-### 0x01 卸载 Uninstall
-  Please be careful not to uninstall during an ssh connection, as the ssh connection will be lost. Use at your own risk.
+### 0x01 卸载
   请注意不要在ssh连接期间卸载，因为ssh连接将丢失。使用风险自负
 ```
-wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/uninstall.sh | sh
+wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
 ```
 
 ### 0x02 更新 Upgrade
