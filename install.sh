@@ -20,4 +20,5 @@ ls /etc/rc.d/S*tailscale*
 
 #启动
 /etc/init.d/tailscale start
+sleep 5
 tailscale up
