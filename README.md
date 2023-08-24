@@ -1,6 +1,5 @@
 # 在 openwrt 上最简单的 tailscale 部署方法
 # The easiest way to deploy tailscale on openwrt
-## 仅兼容 aarch64、x86_64、mips、armv7l
 ## Only compatible with aarch64, x86_64, mips, armv7l
 ## 由于国内raw.githubusercontent.com无法访问, 请国内用户使用 [国内优化分支](https://github.com/cyz0105/tailscale-openwrt/tree/chinese_mainland)
 [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
