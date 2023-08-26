@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Print Repository Owner
-      run: echo "Repository Owner: ${{ github.repository_owner }}"
+      run: echo "Repository Owner:${{ github.repository_owner }}"
 
     - name: check_latest_version
       run: |
