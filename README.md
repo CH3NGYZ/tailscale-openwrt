@@ -1,11 +1,10 @@
-# Tailscale on OpenWRT
-# Based on [adyanth](https://github.com/adyanth/openwrt-tailscale-enabler) 
-# 在 openwrt 上最简单的 tailscale 部署方法
-# The easiest way to deploy tailscale on openwrt
-## 仅兼容 aarch64、x86_64、mips、armv7l
-## Only compatible with aarch64, x86_64, mips, armv7l
+# Tailscale on OpenWRT [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
+### Based on [adyanth](https://github.com/adyanth/openwrt-tailscale-enabler) 
+### 在 openwrt 上最简单的 tailscale 部署方法
+### The easiest way to deploy tailscale on openwrt
+### 仅兼容 aarch64、x86_64、mips、armv7l
+### Only compatible with aarch64, x86_64, mips, armv7l
 
-[![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
 
 ### 0x00 安装
 ```
