@@ -22,6 +22,7 @@ wget -O- https://ghproxy.com/https://raw.githubusercontent.com/cyz0105/tailscale
 ```
 ------------
 ## 0x02 Upgrade
+- ***由于此脚本是直接通过网络下载最新版tailscale的可执行文件到/tmp下, 所以每次开机都下载的是最新版.***
 ```
 reboot
 ```
