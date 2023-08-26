@@ -1,29 +1,32 @@
-# Tailscale on OpenWRT [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
-### Based on [adyanth](https://github.com/adyanth/openwrt-tailscale-enabler) 
-### 在 openwrt 上最简单的 tailscale 部署方法
-### The easiest way to deploy tailscale on openwrt
-### 仅兼容 aarch64、x86_64、mips、armv7l
-### Only compatible with aarch64, x86_64, mips, armv7l
+# Tailscale on OpenWRT :smiley: [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
+
+|  在 openwrt 上最简单的 tailscale 部署方法  | The easiest way to deploy tailscale on openwrt |
+| ------------ | ------------ |
+|  仅兼容 aarch64、x86_64、mips、armv7l |   Only compatible with aarch64, x86_64, mips, armv7l |
 
 
-### 0x00 安装
+------------
+
+## 0x00 Install
 ```
 wget -O- https://ghproxy.com/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
 
-### 0x01 卸载
-  请注意不要在ssh连接期间卸载，因为ssh连接将丢失。使用风险自负
+------------
+
+## 0x01 Uninstall
+- ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失。使用风险自负.***
+
 ```
 wget -O- https://ghproxy.com/https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
 ```
-
-### 0x02 更新 Upgrade
-
+------------
+## 0x02 Upgrade
 ```
 reboot
 ```
-
-### 0x03 troubleshoot
+------------
+## 0x03 troubleshoot
 
 - ghproxy.net 无法链接，或链接极慢
 
@@ -69,7 +72,7 @@ reboot
             - uci set passwall.@global[0].enabled="0" 
             - uci commit passwall
         - more information, pls visit [this page](https://www.cnblogs.com/v5captain/p/16175769.html)
-### 如果好用，麻烦动动小手点个Star，谢谢啦！同时star也会触发自动更新脚本，如果点了star，则仓库自动下载最新版tailscale（如果有的话）
-
-Special thanks:
+#### 如果好用，麻烦动动小手点个Star，谢谢啦！
+------------
+### Special thanks:
 [adyanth [openwrt-tailscale-enabler]](https://github.com/adyanth/openwrt-tailscale-enabler) 
