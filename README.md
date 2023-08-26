@@ -16,13 +16,14 @@ wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/instal
 ------------
 
 ## 0x01 Uninstall
-- ***please be careful not to uninstall during an ssh connection, as the ssh connection will be lost. use at your own risk.***
+- ***Please be careful not to uninstall during an ssh connection, as the ssh connection WILL BE LOST ! use at your own risk.***
 
 ```
 wget -O- https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/uninstall.sh | sh
 ```
 ------------
 ## 0x02 Upgrade
+- ***Since this script downloads the latest version of tailscale's executable file directly over the network to /tmp, the latest version is downloaded every time you boot up.***
 ```
 reboot
 ```
