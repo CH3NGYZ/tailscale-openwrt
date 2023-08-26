@@ -4,7 +4,7 @@
 | ------------ | ------------ |
 |  仅兼容 aarch64、x86_64、mips、armv7l |   Only compatible with aarch64, x86_64, mips, armv7l |
 
-
+- 如果你想自定义脚本内容, 请克隆我的仓库, 切换到合适的分支, 修改/usr/bin/下的文件,将下载链接更换到你的仓库release, Github Actions会自动将你修改的内容打包成tgz并上传到当前仓库. 然后修改install.sh以及README.MD文件指向你的仓库即可. 
 ------------
 
 ## 0x00 Install
