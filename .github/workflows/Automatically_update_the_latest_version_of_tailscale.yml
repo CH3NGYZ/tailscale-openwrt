@@ -9,6 +9,9 @@ jobs:
   sync_tailscale_latest_version:
     runs-on: ubuntu-latest
     steps:
+    - name: Print Repository Owner
+      run: echo "Repository Owner: ${{ github.repository_owner }}"
+
     - name: check_latest_version
       run: |
         latest_version=$(wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2)
@@ -17,7 +20,7 @@ jobs:
         
     - name: check_release_if_exist
       run: |
-        code=`curl -I -m 10 -o /dev/null -s -w %{http_code} 'https://codeload.github.com/cyz0105/tailscale-openwrt/zip/refs/tags/${{ env.latest_version }}'`
+        code=`curl -I -m 10 -o /dev/null -s -w %{http_code} 'https://codeload.github.com/${{ github.repository_owner }}/tailscale-openwrt/zip/refs/tags/${{ env.latest_version }}'`
         echo "code=$code"  >> $GITHUB_ENV
         echo $code
         
