@@ -12,13 +12,14 @@ tar x -pzvC / -f tailscale-openwrt.tgz
 
 # 删除安装包
 rm tailscale-openwrt.tgz
-
 # 设定开机启动
 /etc/init.d/tailscale enable
-
-ls /etc/rc.d/S*tailscale*
-
+ls /etc/rc.d/*tailscale*
 #启动
-/etc/init.d/tailscale start
-sleep 5
+# /etc/init.d/tailscale start
+/etc/rc.d/S99tailscale start
+echo "Wait 30 seconds until the service starts"
+sleep 30
+/etc/init.d/tailscale status
+echo "If the login fails, run 'tailscaled' command to check the log"
 tailscale up
