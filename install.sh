@@ -5,7 +5,7 @@ opkg install libustream-openssl ca-bundle kmod-tun
 
 
 # 下载安装包
-wget https://raw.githubusercontent.com/cyz0105/tailscale-openwrt/main/tailscale-openwrt.tgz
+wget https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/tailscale-openwrt.tgz
 
 # 解压
 tar x -pzvC / -f tailscale-openwrt.tgz
