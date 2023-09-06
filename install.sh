@@ -21,6 +21,6 @@ ls /etc/rc.d/*tailscale*
 echo "Wait 30 seconds until the service starts"
 sleep 30
 /etc/init.d/tailscale status
-echo "If the login fails, run 'tailscaled' command to check the log"
+echo "If the login fails, run 'tailscaled' command to check the log or re-run 'tailscale up'"
 tailscale up
 tailscale up
