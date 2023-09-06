@@ -1,8 +1,10 @@
 #!/bin/sh
 
+/tmp/tailscale down --accept-risk=lose-ssh
 /tmp/tailscale logout
 /etc/init.d/tailscale disable
-/tmp/tailscale down --accept-risk=lose-ssh
+/etc/init.d/tailscale stop
+ip link delete tailscale0
 rm -rf /etc/tailscale*
 rm -rf /etc/config/tailscale*
 rm -rf /etc/init.d/tailscale*
