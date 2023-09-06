@@ -5,7 +5,7 @@ opkg install libustream-openssl ca-bundle kmod-tun
 
 
 # 下载安装包
-wget https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+wget --tries=5 -c -t 60 https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 
 # 解压
 tar x -pzvC / -f tailscale-openwrt.tgz
