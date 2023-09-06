@@ -10,7 +10,7 @@
 
 ## 0x00 Install
 ```
-wget -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/install.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/install.sh | sh
 ```
 
 ------------
@@ -19,7 +19,7 @@ wget -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/instal
 - ***Please be careful not to uninstall during an ssh connection, as the ssh connection WILL BE LOST ! use at your own risk.***
 
 ```
-wget -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/uninstall.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/uninstall.sh | sh
 ```
 ------------
 ## 0x02 Upgrade
