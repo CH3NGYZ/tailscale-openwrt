@@ -23,3 +23,4 @@ sleep 30
 /etc/init.d/tailscale status
 echo "If the login fails, run 'tailscaled' command to check the log"
 tailscale up
+tailscale up
