@@ -15,7 +15,7 @@ if [ ! -f /tmp/tailscaled ]; then
     fi
 
     tailscale_version="1.48.1"
-    latest_version=`wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
+    latest_version=`wget --tries=5 -c -t 60 -O- https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
     if [ "$latest_version" == "" ]; then
         latest_version="1.48.1"
     fi
