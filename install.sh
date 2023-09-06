@@ -18,8 +18,8 @@ ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
 /etc/rc.d/S99tailscale start
-echo "请等待30秒直到服务启动"
-sleep 30
+echo "请等待10秒直到服务启动"
+sleep 10
 /etc/init.d/tailscale status
 echo "如果无法登陆, 请运行 tailscaled 命令检查日志, 或重新运行 tailscale up"
 tailscale up
