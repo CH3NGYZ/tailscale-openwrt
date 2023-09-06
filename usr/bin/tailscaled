@@ -33,7 +33,7 @@ if [ ! -f /tmp/tailscaled ]; then
     echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
      
 
-    wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://github.com/CH3NGYZ/tailscale-openwrt/releases/download/${tailscale_version}/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
+    wget --tries=10 -c -t 60 -O- https://ghproxy.com/https://github.com/CH3NGYZ/tailscale-openwrt/releases/download/${tailscale_version}/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
     mv /tmp/tailscale_$version/* /tmp
     rm -rf /tmp/tailscale_${version}*
     echo "完成!"
