@@ -18,8 +18,8 @@ ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
 /etc/rc.d/S99tailscale start
-echo "Wait 30 seconds until the service starts"
-sleep 30
+echo "Wait 10 seconds until the service starts"
+sleep 10
 /etc/init.d/tailscale status
 echo "If the login fails, run 'tailscaled' command to check the log or re-run 'tailscale up'"
 tailscale up
