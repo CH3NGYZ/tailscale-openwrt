@@ -24,7 +24,7 @@ ls /etc/rc.d/*tailscale*
 echo "请等待, Tailscaled 服务正在后台下载 Tailscale 可执行文件..."
 
 start_time=$(date +%s)
-timeout=60  # 1分钟的超时时间
+timeout=180  # 3分钟的超时时间
 
 while true; do
     if [ -e /tmp/tailscaled ]; then
