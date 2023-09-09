@@ -1,6 +1,6 @@
 #!/bin/sh
 if [ -e /tmp/tailscaled ]; then
-        echo "存在残留, 请卸载并重启后重试"
+        echo "Residual files exist. Uninstall them, restart your machine, and try again"
         exit 1
 fi
 # opkg update
