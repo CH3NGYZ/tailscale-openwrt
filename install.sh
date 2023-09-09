@@ -34,7 +34,7 @@ while true; do
         current_time=$(date +%s)
         elapsed_time=$((current_time - start_time))
         if [ $elapsed_time -ge $timeout ]; then
-            echo "The script has timed out. You need to manually open the system log to view the failure cause..."
+            echo "The download timed out. You need to manually open the system log to view the failure cause..."
             exit 1
         else
             sleep 2
