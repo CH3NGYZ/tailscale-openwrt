@@ -1,26 +1,26 @@
 #!/bin/sh
-arch=`uname -m`
-if [ "$arch" == "i386" ]; then
+arch_=`uname -m`
+if [ "$arch_" == "i386" ]; then
 arch=386
-elif [ "$arch" == "x86_64" ]; then
+elif [ "$arch_" == "x86_64" ]; then
 arch=amd64
-elif [ "$arch" == "armv7l" ]; then
+elif [ "$arch_" == "armv7l" ]; then
 arch=arm
-elif [ "$arch" == "aarch64" ]; then
+elif [ "$arch_" == "aarch64" ]; then
 arch=arm64
-elif [ "$arch" == "armv8l" ]; then
+elif [ "$arch_" == "armv8l" ]; then
 arch=arm64
-elif [ "$arch" == "geode" ]; then
+elif [ "$arch_" == "geode" ]; then
 arch=geode
-elif [ "$arch" == "mips" ]; then
+elif [ "$arch_" == "mips" ]; then
 endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" : ""; exit }'`
-elif [ "$arch" == "riscv64" ]; then
+elif [ "$arch_" == "riscv64" ]; then
 arch=riscv64
 else
-echo "当前机器的架构是${arch}${endianness}, 脚本不兼容此输出, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "当前机器的架构是${arch_}${endianness}, 脚本不兼容此输出, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 exit 1
 fi
-echo "当前机器的架构是${arch}${endianness}, 脚本兼容此架构, 请在这个issue留下评论以便作者及时修改说明文档中支持的架构部分: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "当前机器的架构是${arch_}${endianness}|${arch}, 脚本兼容此架构, 请在这个issue留下评论以便作者及时修改说明文档中支持的架构部分: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 
 if [ -e /tmp/tailscaled ]; then
         echo "存在残留, 请卸载并重启后重试"
