@@ -26,6 +26,8 @@ if [ -e /tmp/tailscaled ]; then
         echo "Residual files exist. Uninstall them, restart your machine, and try again"
         exit 1
 fi
+echo "wait for 5 seconds"
+sleep 5
 # opkg update
 opkg install libustream-openssl ca-bundle kmod-tun
 
