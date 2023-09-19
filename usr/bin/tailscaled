@@ -19,7 +19,7 @@ if [ ! -f /tmp/tailscaled ]; then
     elif [ "$arch" == "riscv64" ]; then
         arch=riscv64
     else
-        echo "当前的架构是${arch}${endianness}，请给作者仓库提issue以便作者及时修改脚本。"
+        echo "当前机器的架构是${arch}${endianness}, 脚本不兼容此输出, 请给作者提issue以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues"
         exit 1
     fi
     tailscale_version="1.48.2"
