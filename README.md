@@ -1,31 +1,34 @@
 # Tailscale on OpenWRT :smiley: [![Page Views Count](https://badges.toozhao.com/badges/01GZWH4F36G14VWXT8RP9KRCYV/green.svg)](https://badges.toozhao.com/stats/01GZWH4F36G14VWXT8RP9KRCYV)
 
-|  在 openwrt 上最简单的 tailscale 部署方法  | The easiest way to deploy tailscale on openwrt |
-| ------------ | ------------ |
-|  仅兼容 aarch64、x86_64、mips、armv7l |   Only compatible with aarch64, x86_64, mips, armv7l |
+|  在OpenWRT上部署Tailscale的最简单方法 |
+| ------------ |
+|  已测试支持的架构：x86_64 |
+|  未经测试的架构：aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、mipsle、i386、geode |
 
-- 如果你想自定义脚本内容, 请fork我的仓库, 切换到合适的分支, 修改/usr/bin/下的文件,将下载链接更换到你的仓库release, Github Actions会自动将你修改的内容打包成tgz并上传到当前仓库. 然后修改install.sh以及README.MD文件指向你的仓库即可. 
+- **希望你能测试这个脚本，并在issues中通知我运行的结果。我将尽快更新文档中支持的架构部分。**
+- 如果您想自定义脚本内容，请fork我的仓库，切换到相应的分支，修改/usr/bin/文件，将下载链接更改为您的仓库，Github Actions会自动将修改后的内容打包到tgz中，并将其上传到当前仓库。然后修改install.sh和Readme.MD文件中的用户名以指向您的仓库。
 ------------
 
-## 0x00 Install
+## 0x00 安装
 ```
-wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
 
 ------------
 
-## 0x01 Uninstall
-- ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失。使用风险自负.***
+## 0x01 卸载
+- ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失！使用风险自负。***
 
 ```
-wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
 ```
 ------------
-## 0x02 Upgrade
-- ***由于此脚本是直接通过网络下载最新版tailscale的可执行文件到/tmp下, 所以每次开机都下载的是最新版.***
+## 0x02 升级
+- ***由于该脚本通过网络直接将TailScale的可执行文件的最新版本下载到内存中，因此每次启动openwrt时都会下载最新版本。***
 ```
 reboot
 ```
+
 ------------
 ## 0x03 troubleshoot
 
@@ -72,8 +75,8 @@ reboot
           - 关闭：  
             - uci set passwall.@global[0].enabled="0" 
             - uci commit passwall
-        - more information, pls visit [this page](https://www.cnblogs.com/v5captain/p/16175769.html)
+        - 更多信息请访问[此页面](https://www.cnblogs.com/v5captain/p/16175769.html)
 #### 如果好用，麻烦动动小手点个Star，谢谢啦！
 ------------
-### Special thanks:
+### 特别感谢:
 [adyanth [openwrt-tailscale-enabler]](https://github.com/adyanth/openwrt-tailscale-enabler) 
