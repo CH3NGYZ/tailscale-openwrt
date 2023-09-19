@@ -8,7 +8,7 @@
 [English](https://github.com/CH3NGYZ/tailscale-openwrt/tree/main/README.md)
 - **希望你能测试这个脚本，并在issues中通知我运行的结果。我将尽快更新文档中支持的架构部分。**
 - 如果您想自定义脚本内容，请fork我的仓库，切换到相应的分支，修改/usr/bin/文件，将下载链接更改为您的仓库，Github Actions会自动将修改后的内容打包到tgz中，并将其上传到当前仓库。然后修改install.sh和Readme.MD文件中的用户名以指向您的仓库。
-> Note: 由于 raw.githubusercontent.com 在中国大陆被污染, 如您在使用install.sh脚本的过程中出现超时的情况， 请考虑使用 [Github代理分支](https://github.com/CH3NGYZ/tailscale-openwrt/tree/chinese_mainland)
+> Note: 由于 raw.githubusercontent.com 在中国大陆被污染, 如您在使用install.sh脚本的过程中出现超时的情况， 请考虑使用 [Github代理分支](https://github.com/CH3NGYZ/tailscale-openwrt/blob/chinese_mainland/README.md)
 ------------
 
 ## 0x00 安装
