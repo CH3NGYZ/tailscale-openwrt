@@ -1,45 +1,42 @@
 #!/bin/sh
-
 set -e
-
 if [ ! -f /tmp/tailscale ]; then
     arch=`uname -m`
-    if [ "$arch" == "mips" ]; then
-        endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" : ""; exit }'`
+    if [ "$arch" == "i386" ]; then
+        arch=386
+    elif [ "$arch" == "x86_64" ]; then
+        arch=amd64
     elif [ "$arch" == "armv7l" ]; then
         arch=arm
     elif [ "$arch" == "aarch64" ]; then
         arch=arm64
-    elif [ "$arch" == "x86_64" ]; then
-        arch=amd64
+    elif [ "$arch" == "armv8l" ]; then
+        arch=arm64
+    elif [ "$arch" == "geode" ]; then
+        arch=geode
+    elif [ "$arch" == "mips" ]; then
+        endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" : ""; exit }'`
+    elif [ "$arch" == "riscv64" ]; then
+        arch=riscv64
+    else
+        echo "The current architecture is ${arch}${endianness}, which is not on the support list. Please contact the author to modify the script."
+        exit 1
     fi
-
-    tailscale_version="1.48.1"
+    tailscale_version="1.48.2"
     latest_version=`wget --tries=5 -c -t 60 -O- https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
     if [ "$latest_version" == "" ]; then
-        latest_version="1.48.1"
+        latest_version="1.48.2"
     fi
-
     if [ "$tailscale_version" != "$latest_version" ]; then
         tailscale_version=$latest_version
     fi
-
     version="${tailscale_version}_${arch}${endianness}"
-
-    echo "下载 Tailscale ${version} .."
-
+    echo "downloading Tailscale ${version} .."
     echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
-
-    if [ ! -f /tmp/tailscaled ]; then
-        echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
-    fi
-
+    echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
     wget --tries=5 -c -t 60 -O- https://github.com/CH3NGYZ/tailscale-openwrt/releases/download/${tailscale_version}/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
-
     mv /tmp/tailscale_$version/* /tmp
     rm -rf /tmp/tailscale_${version}*
-
     echo "Done!"
 fi
-
 /tmp/tailscale "$@"
