@@ -1,4 +1,27 @@
 #!/bin/sh
+arch=`uname -m`
+if [ "$arch" == "i386" ]; then
+arch=386
+elif [ "$arch" == "x86_64" ]; then
+arch=amd64
+elif [ "$arch" == "armv7l" ]; then
+arch=arm
+elif [ "$arch" == "aarch64" ]; then
+arch=arm64
+elif [ "$arch" == "armv8l" ]; then
+arch=arm64
+elif [ "$arch" == "geode" ]; then
+arch=geode
+elif [ "$arch" == "mips" ]; then
+endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" : ""; exit }'`
+elif [ "$arch" == "riscv64" ]; then
+arch=riscv64
+else
+echo "The current architecture of the machine is ${arch}${endianness}, and scripts are not compatible with that architecture, so please leave a comment on this issue so that the author can modify the script in time: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+exit 1
+fi
+echo "The current architecture of the machine is ${arch}${endianness}, which scripts are compatible with, so leave a comment on this issue so that the author can modify the architecture parts of the documentation: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+
 if [ -e /tmp/tailscaled ]; then
         echo "Residual files exist. Uninstall them, restart your machine, and try again"
         exit 1
