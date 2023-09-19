@@ -5,8 +5,8 @@
 |  已测试支持的架构：x86_64 |
 |  未经测试的架构：aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、mipsle、i386、geode |
 
-[English](https://github.com/CH3NGYZ/tailscale-openwrt/edit/main/README.md)
-- **希望你会测试这个脚本，并在issues中通知我运行的结果。我将尽快更新文档中支持的架构部分。**
+[English](https://github.com/CH3NGYZ/tailscale-openwrt/tree/main/README.md)
+- **希望你能测试这个脚本，并在issues中通知我运行的结果。我将尽快更新文档中支持的架构部分。**
 - 如果您想自定义脚本内容，请fork我的仓库，切换到相应的分支，修改/usr/bin/文件，将下载链接更改为您的仓库，Github Actions会自动将修改后的内容打包到tgz中，并将其上传到当前仓库。然后修改install.sh和Readme.MD文件以指向您的仓库。
 > Note: 由于国内 raw.githubusercontent.com 被DNS污染, 如您使用main分支的脚本出现超时情况， 请考虑使用 [Github代理分支](https://github.com/CH3NGYZ/tailscale-openwrt/tree/chinese_mainland) 
 ------------
