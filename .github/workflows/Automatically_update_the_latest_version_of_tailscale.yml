@@ -28,10 +28,16 @@ jobs:
       if: env.code == '404'
       run: |
         echo "下载文件"
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_386.tgz
         curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_amd64.tgz
         curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_arm64.tgz
-        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_mips.tgz
         curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_arm.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_geode.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_mips.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_mips64.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_mips64le.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_mipsle.tgz
+        curl --remote-name https://pkgs.tailscale.com/stable/tailscale_${{env.latest_version}}_riscv64.tgz
         ls
         
     - name: Create Release and Upload Release Asset
@@ -44,8 +50,14 @@ jobs:
         draft: false
         prerelease: false
         files: |
+          tailscale_${{env.latest_version}}_386.tgz
           tailscale_${{env.latest_version}}_amd64.tgz
           tailscale_${{env.latest_version}}_arm64.tgz
-          tailscale_${{env.latest_version}}_mips.tgz
           tailscale_${{env.latest_version}}_arm.tgz
+          tailscale_${{env.latest_version}}_geode.tgz
+          tailscale_${{env.latest_version}}_mips.tgz
+          tailscale_${{env.latest_version}}_mips64.tgz
+          tailscale_${{env.latest_version}}_mips64le.tgz
+          tailscale_${{env.latest_version}}_mipsle.tgz
+          tailscale_${{env.latest_version}}_riscv64.tgz
         
