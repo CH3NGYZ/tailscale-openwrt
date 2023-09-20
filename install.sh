@@ -20,7 +20,7 @@ else
 echo "The current architecture of the machine is ${arch_}${endianness}, and scripts are not compatible with that architecture, so please leave a comment on this issue so that the author can modify the script in time: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 exit 1
 fi
-echo "The current architecture of the machine is ${arch_}${endianness}|${arch}, which scripts are compatible with, so leave a comment on this issue so that the author can modify the architecture parts of the documentation: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "The current architecture of the machine is ${arch_}${endianness}|${arch_}, which scripts are compatible with, so leave a comment on this issue so that the author can modify the architecture parts of the documentation: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 
 if [ -e /tmp/tailscaled ]; then
         echo "Residual files exist. Uninstall them, restart your machine, and try again"
