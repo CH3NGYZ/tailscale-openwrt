@@ -35,6 +35,7 @@ jobs:
         run: |
           code=$(curl -I -m 10 -o /dev/null -s -w %{http_code} "https://codeload.github.com/${{ github.repository_owner }}/tailscale-openwrt/zip/refs/tags/${{ env.latest_version }}")
           echo "code=$code" >> $GITHUB_ENV
+          echo $code
 
       - name: Download
         if: steps.check_release_if_exist.outputs.code == '404'
