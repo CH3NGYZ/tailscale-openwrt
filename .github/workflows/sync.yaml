@@ -37,8 +37,9 @@ jobs:
           echo "code=$code" >> $GITHUB_ENV
           echo $code
 
+
       - name: Download
-        if: steps.check_release_if_exist.outputs.code == '404'
+        if: env.code == '404'
         run: |
           echo "下载文件"
           curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_386.tgz"
@@ -54,7 +55,7 @@ jobs:
           ls
 
       - name: Create Release and Upload Release Asset
-        if: steps.check_release_if_exist.outputs.code == '404'
+        if: env.code == '404'
         uses: softprops/action-gh-release@v1
         with:
           tag_name: ${{ env.latest_version }}
