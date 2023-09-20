@@ -20,7 +20,7 @@ else
 echo "当前机器的架构是${arch_}${endianness}, 脚本不兼容此输出, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 exit 1
 fi
-echo "当前机器的架构是${arch_}${endianness}|${arch}, 脚本兼容此架构, 请在这个issue留下评论以便作者及时修改说明文档中支持的架构部分: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "当前机器的架构是${arch_}${endianness}|${arch_}, 脚本兼容此架构, 请在这个issue留下评论以便作者及时修改说明文档中支持的架构部分: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 
 if [ -e /tmp/tailscaled ]; then
         echo "存在残留, 请卸载并重启后重试"
