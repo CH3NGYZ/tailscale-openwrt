@@ -5,7 +5,7 @@
 |  Supported architectures have been tested ：x86_64 |
 |  Untested architecture : aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、mipsle、i386、geode |
 
-[简体中文](https://github.com/CH3NGYZ/tailscale-openwrt/tree/main/README_zh-cn.md)
+[简体中文说明文档](https://github.com/CH3NGYZ/tailscale-openwrt/tree/main/README_zh-cn.md)
 - **Hope you will test this script and inform me of the running results in issue. I will update the supported architecture parts of the documentation as soon as possible.**
 - If you want to customize the script content, please fork my repository, switch to the appropriate branch, modify the /usr/bin/file, change the download link to your repository release, Github Actions will automatically package your modified content into tgz and upload it to the current repository. Then modify the install.sh and README.MD files to point to your repository.
 ------------
