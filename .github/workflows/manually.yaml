@@ -25,6 +25,7 @@ jobs:
             latest_version="${{ steps.set_version.outputs.version }}"
           fi
           echo "latest_version=$latest_version" >> $GITHUB_ENV
+          echo $latest_version
 
       - name: Check Release Existence
         id: check_release_if_exist
