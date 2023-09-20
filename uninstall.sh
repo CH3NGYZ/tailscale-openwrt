@@ -8,12 +8,12 @@ cleanup() {
     echo "已清除，强烈推荐重启您的OpenWRT"
 }
 
-if [ ! -e /tmp/tailscaled ]; then
-    echo "文件不存在，执行清除操作"
+if [ -e /tmp/tailscaled ]; then
+    echo "文件存在，停止Tailscale服务并执行清除操作"
+    /etc/init.d/tailscale stop
     /tmp/tailscale down --accept-risk=lose-ssh
     /tmp/tailscale logout
     /etc/init.d/tailscale disable
-    /etc/init.d/tailscale stop
     rm -rf /etc/tailscale*
     rm -rf /etc/config/tailscale*
     rm -rf /etc/init.d/tailscale*
@@ -23,7 +23,7 @@ if [ ! -e /tmp/tailscaled ]; then
     ip link delete tailscale0
     cleanup
 else
-    echo "文件存在，执行清除操作"
+    echo "文件不存在，直接执行清除操作"
     rm -rf /etc/tailscale*
     rm -rf /etc/config/tailscale*
     rm -rf /etc/init.d/tailscale*
