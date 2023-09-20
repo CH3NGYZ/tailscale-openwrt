@@ -13,7 +13,7 @@
 
 ## 0x00 安装
 ```
-wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/install.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/install_zh-cn.sh | sh
 ```
 
 ------------
@@ -22,7 +22,7 @@ wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-
 - ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失！使用风险自负。***
 
 ```
-wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/uninstall.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/uninstall_zh-cn.sh | sh
 ```
 ------------
 ## 0x02 升级
