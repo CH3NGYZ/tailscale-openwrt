@@ -2,8 +2,8 @@
 
 |  The easiest way to deploy tailscale on openwrt |
 | ------------ |
-|  Supported architectures have been tested ：x86_64 |
-|  Untested architecture : aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、mipsle、i386、geode |
+|  Supported architectures have been tested ：x86_64, mipsle |
+|  Untested architecture : aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、i386、geode |
 
 [简体中文说明文档](https://github.com/CH3NGYZ/tailscale-openwrt/tree/main/README_zh-cn.md)
 - **Hope you will test this script and inform me of the running results in issue. I will update the supported architecture parts of the documentation as soon as possible.**
