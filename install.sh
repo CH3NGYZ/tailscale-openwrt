@@ -17,7 +17,7 @@ endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" :
 elif [ "$arch_" == "riscv64" ]; then
 arch=riscv64
 else
-echo "当前机器的架构是 ${arch_}${endianness} , 脚本不兼容此输出, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "当前机器的架构是 ${arch_}${endianness} , 脚本内置的架构代码可能不符合您的机器, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 exit 1
 fi
 
