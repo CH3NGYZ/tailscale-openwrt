@@ -48,7 +48,7 @@ ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
 /etc/rc.d/S90tailscale start
-echo "请等待, Tailscaled 服务正在后台下载 Tailscale 可执行文件..."
+echo "请等待,超时时间为三分钟, Tailscaled 服务正在后台下载 Tailscale 可执行文件..."
 
 start_time=$(date +%s)
 timeout=180  # 3分钟的超时时间
@@ -69,7 +69,7 @@ while true; do
     fi
 done
 
-echo "如果无法登陆, 请检查后台服务 /etc/init.d/tailscaled status"
+echo "如果无法登陆, 请检查后台服务运行状态 /etc/init.d/tailscaled status"
 tailscale up
 tailscale up
 echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch} , 如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
