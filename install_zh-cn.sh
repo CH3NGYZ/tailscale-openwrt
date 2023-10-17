@@ -17,10 +17,9 @@ endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" :
 elif [ "$arch_" == "riscv64" ]; then
 arch=riscv64
 else
-echo "当前机器的架构是${arch_}${endianness}, 脚本不兼容此架构, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "当前机器的架构是 ${arch_}${endianness} , 脚本内置的架构代码可能不符合您的机器, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 exit 1
 fi
-echo "当前机器的架构是${arch_}${endianness}|${arch_}, 脚本兼容此架构, 请在这个issue留下评论以便作者及时修改说明文档中支持的架构部分: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 
 if [ -e /tmp/tailscaled ]; then
         echo "存在残留, 请卸载并重启后重试"
@@ -67,6 +66,7 @@ while true; do
     fi
 done
 
-echo "如果无法登陆, 请运行 '/etc/init.d/tailscale stop && clear && /usr/bin/tailscaled' 命令检查原因, 或重新运行 tailscale up"
+echo "如果无法登陆, 请检查后台服务 /etc/init.d/tailscaled status"
 tailscale up
 tailscale up
+echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch} , 如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
