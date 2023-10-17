@@ -2,7 +2,7 @@
 
 |  在OpenWRT上部署Tailscale的最简单方法 |
 | ------------ |
-|  已测试支持的架构：x86_64 |
+|  已测试支持的架构：x86_64、mipsle |
 |  未经测试的架构：aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、mipsle、i386、geode |
 
 - **希望你能测试这个脚本，并在issues中通知我运行的结果。我将尽快更新文档中支持的架构部分。**
