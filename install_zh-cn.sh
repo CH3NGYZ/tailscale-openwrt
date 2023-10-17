@@ -25,11 +25,14 @@ if [ -e /tmp/tailscaled ]; then
         echo "存在残留, 请卸载并重启后重试"
         exit 1
 fi
-echo "等待5秒"
-sleep 5
+
 # opkg update
 opkg install libustream-openssl ca-bundle kmod-tun
-
+echo "如果包安装失败,请手动运行以下命令安装,如果还是不行,请手动查找原因:"
+echo "opkg install libustream-openssl"
+echo "opkg install ca-bundle"
+echo "opkg install kmod-tun"
+echo "以上三个包缺一不可"
 
 # 下载安装包
 wget --tries=5 -c -t 60 https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/tailscale-openwrt.tgz
@@ -44,7 +47,7 @@ rm tailscale-openwrt.tgz
 ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
-/etc/rc.d/S99tailscale start
+/etc/rc.d/S90tailscale start
 echo "请等待, Tailscaled 服务正在后台下载 Tailscale 可执行文件..."
 
 start_time=$(date +%s)
