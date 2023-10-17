@@ -20,14 +20,10 @@ else
 echo "当前机器的架构是 ${arch_}${endianness} , 脚本内置的架构代码可能不符合您的机器, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 exit 1
 fi
-
-
 if [ -e /tmp/tailscaled ]; then
         echo "存在残留, 请卸载并重启后重试"
         exit 1
 fi
-echo "等待5秒"
-sleep 5
 # opkg update
 opkg install libustream-openssl ca-bundle kmod-tun
 echo "如果包安装失败,请手动运行以下命令安装,如果还是不行,请手动查找原因:"
@@ -49,8 +45,8 @@ rm tailscale-openwrt.tgz
 ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
-/etc/rc.d/S99tailscale start
-echo "请等待, Tailscaled 服务正在后台下载 Tailscale 可执行文件..."
+/etc/rc.d/S90tailscale start
+echo "请等待,超时时间为三分钟, Tailscaled 服务正在后台下载 Tailscale 可执行文件..."
 
 start_time=$(date +%s)
 timeout=180  # 3分钟的超时时间
