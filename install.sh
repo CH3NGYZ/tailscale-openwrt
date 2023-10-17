@@ -17,23 +17,25 @@ endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" :
 elif [ "$arch_" == "riscv64" ]; then
 arch=riscv64
 else
-echo "The current architecture of the machine is ${arch_}${endianness}, and scripts are not compatible with that architecture, so please leave a comment on this issue so that the author can modify the script in time: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "The architecture of the current machine is ${arch_}${endianness} , the schema code built into the script may not match your machine, please leave a comment on this issue so that the author can modify the script in time: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 exit 1
 fi
-echo "The current architecture of the machine is ${arch_}${endianness}|${arch_}, which scripts are compatible with, so leave a comment on this issue so that the author can modify the architecture parts of the documentation: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
 
 if [ -e /tmp/tailscaled ]; then
-        echo "Residual files exist. Uninstall them, restart your machine, and try again"
+        echo "Residue exists, uninstall it, restart your machine and try again"
         exit 1
 fi
-echo "wait for 5 seconds"
-sleep 5
+
 # opkg update
 opkg install libustream-openssl ca-bundle kmod-tun
-
+echo "If the package fails to be installed, manually run the following command to install the package. If the problem persists, manually locate the cause:"
+echo "opkg install libustream-openssl"
+echo "opkg install ca-bundle"
+echo "opkg install kmod-tun"
+echo "All three packages are indispensable"
 
 # 下载安装包
-wget --tries=5 -c -t 60 https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+wget --tries=5 -c -t 60 https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/main/tailscale-openwrt.tgz
 
 # 解压
 tar x -pzvC / -f tailscale-openwrt.tgz
@@ -45,21 +47,21 @@ rm tailscale-openwrt.tgz
 ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
-/etc/rc.d/S99tailscale start
-echo "Please wait, Tailscaled service is downloading the Tailscale executable file in the background......"
+/etc/rc.d/S90tailscale start
+echo "Please wait, the timeout time is three minutes, the Tailscaled service is downloading the Tailscale executable file in the background..."
 
 start_time=$(date +%s)
 timeout=180  # 3分钟的超时时间
 
 while true; do
     if [ -e /tmp/tailscaled ]; then
-        echo "/tmp/tailscaled is already exists. Go on"
+        echo "/tmp/tailscaled 存在, 继续"
         break
     else
         current_time=$(date +%s)
         elapsed_time=$((current_time - start_time))
         if [ $elapsed_time -ge $timeout ]; then
-            echo "The download timed out. You need to manually open the system log to view the failure cause..."
+            echo "The script has timed out. Please manually open the Syslog to see the reason for the failure."
             exit 1
         else
             sleep 2
@@ -67,6 +69,7 @@ while true; do
     fi
 done
 
-echo "If you cannot log in, run the '/etc/init.d/tailscale stop && clear && /usr/bin/tailscaled 'command to check the log, or re-run 'tailscale up'..."
+echo "If the login fails, check the background service running status by running /etc/init.d/tailscaled status"
 tailscale up
 tailscale up
+echo "The current machine architecture is arch_:${arch_}${endianness} | arch:${arch} . If it works successfully, leave a comment on this issue so that the author can revise the documentation in time: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
