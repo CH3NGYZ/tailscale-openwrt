@@ -5,7 +5,7 @@
 |  已测试支持的架构：x86_64、mipsle |
 |  未经测试的架构：aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、mipsle、i386、geode |
 
-- **由于系统以及机器架构的不同，导致运行查看架构的命令`uname -m`出来的结果可能不是脚本中预设的内容，所以有可能因为对不上而查找架构失败，因此如果你能测试这个脚本，并在issues中通知我运行的结果。我将尽快更新脚本以及文档中支持的架构部分。**
+- 尽管我的[install.sh](https://github.com/CH3NGYZ/tailscale-openwrt/blob/chinese_mainland/install.sh)脚本中有预设aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、i386、geode这些架构的安装命令，但由于系统以及机器架构的不同，导致运行查看架构的命令 `uname -m` 出来的结果 ***可能*** 不是脚本中预设的内容，所以有可能因为对不上而查找架构失败，因此如果你能测试这个脚本，并在issues中通知运行的结果，我将尽快更新脚本，以及文档中支持的架构部分。
 - 如果您想自定义脚本内容，请fork我的仓库，切换到相应的分支，修改/usr/bin/文件，将下载链接更改为您的仓库，Github Actions会自动将修改后的内容打包到tgz中，并将其上传到当前仓库。然后修改install.sh和Readme.MD文件中的用户名以指向您的仓库。
 > [此分支的文件以及链接都添加了ghproxy.com作为代理, 请放心使用.]()
 > 
