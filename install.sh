@@ -70,4 +70,4 @@ done
 echo "如果无法登陆, 请运行 '/etc/init.d/tailscale stop && clear && /usr/bin/tailscaled' 命令检查日志, 或重新运行 tailscale up"
 tailscale up
 tailscale up
-echo "当前机器的架构是 ${arch_}${endianness} | ${arch_} , 如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch} , 如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
