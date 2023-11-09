@@ -14,7 +14,7 @@
 
 ## 0x00 安装
 ```
-wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.ch3ngyz.workers.dev/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
 
 ------------
@@ -23,7 +23,7 @@ wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://raw.githubusercontent.co
 - ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失！使用风险自负。***
 
 ```
-wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
+wget --tries=5 -c -t 60 -O- https://raw.ch3ngyz.workers.dev/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
 ```
 ------------
 ## 0x02 升级
