@@ -33,7 +33,7 @@ echo "opkg install kmod-tun"
 echo "以上三个包缺一不可"
 
 # 下载安装包
-wget --tries=5 -c -t 60 https://ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+wget --tries=5 -c -t 60 https://raw.ch3ngyz.workers.dev/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 
 # 解压
 tar x -pzvC / -f tailscale-openwrt.tgz
