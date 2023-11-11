@@ -23,7 +23,7 @@ if [ ! -f /tmp/tailscaled ]; then
         exit 1
     fi
     tailscale_version="1.48.2"
-    latest_version=`wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
+    latest_version=`wget --tries=5 -c -t 60 -O- https://dl.ghpig.top/https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
     if [ "$latest_version" == "" ]; then
         latest_version="1.48.2"
     fi
@@ -34,7 +34,7 @@ if [ ! -f /tmp/tailscaled ]; then
     echo "正在下载Tailscale_${version} ..."
     echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
     echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
-    wget --tries=5 -c -t 60 -O- https://ghproxy.com/https://github.com/CH3NGYZ/tailscale-openwrt/releases/download/${tailscale_version}/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
+    wget --tries=5 -c -t 60 -O- https://dl.ghpig.top/https://github.com/CH3NGYZ/tailscale-openwrt/releases/download/${tailscale_version}/tailscale_${version}.tgz | tar x -zvf - -C /tmp -T /tmp/tailscale_${version}_files.txt
     mv /tmp/tailscale_$version/* /tmp
     rm -rf /tmp/tailscale_${version}*
     echo "下载完毕!"
