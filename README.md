@@ -7,14 +7,14 @@
 
 - 尽管我的[install.sh](https://github.com/CH3NGYZ/tailscale-openwrt/blob/chinese_mainland/install.sh)脚本中有预设aarch64、armv8l、armv7l、riscv64、mips、mips64、mips64le、i386、geode这些架构的安装命令，但由于系统以及机器架构的不同，导致运行查看架构的命令 `uname -m` 出来的结果 ***可能*** 不是脚本中预设的内容，所以有可能因为对不上而查找架构失败，因此如果你能测试这个脚本，并在issues中通知运行的结果，我将尽快更新脚本，以及文档中支持的架构部分。
 - 如果您想自定义脚本内容，请fork我的仓库，切换到相应的分支，修改/usr/bin/文件，将下载链接更改为您的仓库，Github Actions会自动将修改后的内容打包到tgz中，并将其上传到当前仓库。然后修改install.sh和Readme.MD文件中的用户名以指向您的仓库。
-> [此分支的文件以及链接都添加了cloudflare作为代理, 请放心使用.]()
+> [此分支的文件以及链接都添加了jsDiliver作为代理, 请放心使用.]()
 > 
 > 注意, clash for windows的TUN模式与DockerDesktop、Tailscale for Windows不兼容, 解决办法: 暂时关闭TUN, 登录完毕后再打开. [原理](https://chengyunzhe.notion.site/chengyunzhe/clash-for-windows-docker-tailscale-fccff782bd2c482cb9b7d3dd08c58b18)
 ------------
 
 ## 0x00 安装
 ```
-wget --tries=5 -c -t 60 -O- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
+wget --tries=5 -c -t 60 -O- https://cdn.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/install.sh | sh
 ```
 
 ------------
@@ -23,7 +23,7 @@ wget --tries=5 -c -t 60 -O- https://ghproxy.net/https://raw.githubusercontent.co
 - ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失！使用风险自负。***
 
 ```
-wget --tries=5 -c -t 60 -O- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
+wget --tries=5 -c -t 60 -O- https://cdn.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/uninstall.sh | sh
 ```
 ------------
 ## 0x02 升级
