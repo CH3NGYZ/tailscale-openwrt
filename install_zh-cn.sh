@@ -61,7 +61,7 @@ while true; do
         current_time=$(date +%s)
         elapsed_time=$((current_time - start_time))
         if [ $elapsed_time -ge $timeout ]; then
-            echo "超时，退出脚本,请手动打开系统日志查看失败原因"
+            echo "超时，退出脚本,请手动打开luci界面-系统日志查看失败原因,也可运行 tailscale 查看下载情况"
             exit 1
         else
             sleep 2
@@ -72,4 +72,4 @@ done
 echo "如果无法登陆, 请检查后台服务运行状态 /etc/init.d/tailscaled status"
 tailscale up
 tailscale up
-echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch} , 如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "当前机器的架构是 arch_:${arch_}${endianness} | arch:${arch}，如果成功运行，请在这个issue留下评论以便作者及时修改说明文档：https://github.com/CH3NGYZ/tailscale-openwrt/issues/6。如架构已验证,您可不必再留言。"
