@@ -59,7 +59,7 @@ while true; do
         current_time=$(date +%s)
         elapsed_time=$((current_time - start_time))
         if [ $elapsed_time -ge $timeout ]; then
-            echo "超时，退出脚本,请手动打开系统日志查看失败原因"
+            echo "超时，退出脚本,请手动打开luci界面-系统日志查看失败原因,也可运行 tailscale 查看下载情况"
             exit 1
         else
             sleep 2
