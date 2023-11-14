@@ -24,5 +24,5 @@ jobs:
         git config --global user.email "actions@github.com"
         git config --global user.name "GitHub Actions"
         git add .
-        git commit -m "Upload the latest tar.gz file"
+        git commit -m "$(date +'%Y-%m-%d')"
         git push origin HEAD:main
