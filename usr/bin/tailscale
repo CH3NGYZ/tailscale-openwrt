@@ -22,10 +22,10 @@ if [ ! -f /tmp/tailscale ]; then
         echo "The current architecture is ${arch}${endianness}, which is not on the support list. Please contact the author to modify the script."
         exit 1
     fi
-    tailscale_version="1.48.2"
+    tailscale_version="1.54.0"
     latest_version=`wget --tries=5 -c -t 60 -O- https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
     if [ "$latest_version" == "" ]; then
-        latest_version="1.48.2"
+        latest_version="1.54.0"
     fi
     if [ "$tailscale_version" != "$latest_version" ]; then
         tailscale_version=$latest_version
