@@ -23,13 +23,45 @@ if [ ! -f /tmp/tailscaled ]; then
         exit 1
     fi
     tailscale_version="1.54.0"
-    latest_version=`wget --tries=5 -c -t 60 -O- https://gh.ddlc.top//https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest | grep 已从上游同步 | head -1 | cut -d'%' -f 2`
+    release_url="https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest"
+    release_urls=(
+    "https://git.xfj0.cn/$release_url"
+    "https://dl.ghpig.top/$release_url"
+    "https://gh.ddlc.top/$release_url"
+    "https://gh.h233.eu.org/$release_url"
+    "https://slink.ltd/$release_url"
+    )
+
+    max_attempts=3
+    attempt=1
+    latest_version=""
+
+    while [ $attempt -le $max_attempts ]; do
+        echo "尝试获取最新版本号，尝试次数: $attempt"
+        
+        # 从备用网址获取最新版本号
+        for url in "${release_urls[@]}"; do
+            latest_version=$(wget --tries=5 -c -t 60 -O- "$url" | grep 已从上游同步 | head -1 | cut -d'%' -f 2)
+            
+            if [ "$latest_version" != "" ]; then
+                echo "获取成功，版本号：$latest_version"
+                break  # 如果成功获取到版本号，跳出循环
+            fi
+        done
+
+        attempt=$((attempt + 1))
+    done
+
+    # 如果最终还是无法获取到最新版本号，使用默认版本号
     if [ "$latest_version" == "" ]; then
         latest_version="1.54.0"
+        echo "获取失败，使用内置版本号：$latest_version"
     fi
+
     if [ "$tailscale_version" != "$latest_version" ]; then
         tailscale_version=$latest_version
     fi
+
     version="${tailscale_version}_${arch}${endianness}"
     echo "正在下载Tailscale_${version} ..."
     echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
