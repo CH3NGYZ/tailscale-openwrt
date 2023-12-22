@@ -35,7 +35,6 @@ if [ ! -f /tmp/tailscale ]; then
     https://gh.h233.eu.org
     https://slink.ltd"
 
-<<<<<<< HEAD
     for version_proxy in $version_proxys; do
         version_proxy_url="$version_proxy/$version_url"
         latest_version=$(timeout $version_timeout wget -c -qO- "$version_proxy_url" | grep 已从上游同步 | head -1 | cut -d'%' -f 2)
@@ -44,26 +43,6 @@ if [ ! -f /tmp/tailscale ]; then
             echo "获取成功，版本号：$latest_version"
             break  # 如果成功获取到版本号，跳出循环
         fi
-=======
-    max_attempts=3
-    attempt=1
-    latest_version=""
-
-    while [ $attempt -le $max_attempts ]; do
-        echo "尝试获取最新版本号，尝试次数: $attempt"
-        
-        # 获取最新版本号
-        for url in "${release_urls[@]}"; do
-            latest_version=$(wget --tries=5 -c -t 60 -O- "$url" | grep 已从上游同步 | head -1 | cut -d'%' -f 2)
-            echo "网址: $url  结果: $latest_version"
-            if [ "$latest_version" != "" ]; then
-                echo "获取成功，版本号：$latest_version"
-                break  # 如果成功获取到版本号，跳出循环
-            fi
-        done
-
-        attempt=$((attempt + 1))
->>>>>>> 6dfa346891bbb8d3c10fa6ec07c33c67f2fcee87
     done
 
     # 如果最终还是无法获取到最新版本号，使用默认版本号
