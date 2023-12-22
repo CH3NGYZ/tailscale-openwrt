@@ -34,10 +34,41 @@ echo "opkg install coreutils-timeout"
 echo "以上四个包缺一不可"
 
 # 下载安装包
-wget --tries=5 -c -t 60 https://cdn.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
+timeout_seconds=5
+
+download_success=false
+
+# 代理列表
+proxy_zip_urls="https://mirror.ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt1.tgz
+https://gh-proxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+https://fastly.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
+https://raw.fgit.mxtrans.net/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+https://gcore.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
+https://jsdelivr.b-cdn.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
+https://github.moeyy.xyz/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+https://raw.fgit.cf/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz"
+
+for proxy_zip_url in $proxy_zip_urls; do
+    echo "尝试下载 $proxy_zip_url..."
+
+    # 使用 timeout 命令设定超时时间
+    if timeout $timeout_seconds wget -q $proxy_zip_url -O - | tar x -zvC / -f -; then
+        download_success=true
+        echo "下载成功!"
+        break
+    else
+        echo "下载失败，尝试下一个代理..."
+    fi
+done
+
+if [ "$download_success" != true ]; then
+    echo "所有代理下载均失败，请检查网络或稍后再试。"
+    exit 1
+fi
 
 # 解压
-tar x -pzvC / -f tailscale-openwrt.tgz
+
 
 # 删除安装包
 rm tailscale-openwrt.tgz
@@ -46,29 +77,29 @@ rm tailscale-openwrt.tgz
 ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
-/etc/rc.d/S90tailscale start
-echo "请等待,超时时间为三分钟, Tailscaled 服务正在后台下载 Tailscale 可执行文件..."
 
-start_time=$(date +%s)
-timeout=180  # 3分钟的超时时间
-
-while true; do
-    if [ -e /tmp/tailscaled ]; then
-        echo "/tmp/tailscaled 存在, 继续"
-        break
-    else
-        current_time=$(date +%s)
-        elapsed_time=$((current_time - start_time))
-        if [ $elapsed_time -ge $timeout ]; then
-            echo "超时，退出脚本,请手动打开luci界面-系统日志查看失败原因,也可运行 tailscale 查看下载情况"
-            exit 1
-        else
-            sleep 2
-        fi
-    fi
-done
-
-echo "如果无法登陆, 请运行 '/etc/init.d/tailscale stop && clear && /usr/bin/tailscaled' 命令检查日志, 或重新运行 tailscale up"
+echo "请等待, Tailscaled 服务正在下载 Tailscale 可执行文件..."
 tailscale up
-tailscale up
+# start_time=$(date +%s)
+# timeout=180  # 3分钟的超时时间
+
+# while true; do
+#     if [ -e /tmp/tailscaled ]; then
+#         echo "/tmp/tailscaled 存在, 继续"
+#         break
+#     else
+#         current_time=$(date +%s)
+#         elapsed_time=$((current_time - start_time))
+#         if [ $elapsed_time -ge $timeout ]; then
+#             echo "超时，退出脚本,请手动打开luci界面-系统日志查看失败原因,也可运行 tailscale 查看下载情况"
+#             exit 1
+#         else
+#             sleep 2
+#         fi
+#     fi
+# done
+
+# echo "如果无法登陆, 请运行 '/etc/init.d/tailscale stop && clear && /usr/bin/tailscaled' 命令检查日志, 或重新运行 tailscale up"
+# tailscale up
+# tailscale up
 echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch} , 如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
