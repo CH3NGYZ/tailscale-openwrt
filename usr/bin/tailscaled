@@ -65,6 +65,8 @@ if [ ! -f /tmp/tailscaled ]; then
     https://gh.h233.eu.org
     https://slink.ltd"
 
+    echo "tailscalr" > unzip.txt
+    echo "tailscaled" >> unzip.txt
     download_success=false
     timeout_seconds=20
     for zip_proxy in $zip_proxys; do
@@ -72,7 +74,7 @@ if [ ! -f /tmp/tailscaled ]; then
         echo "尝试下载 $zip_proxy_url..."
 
         # 使用 timeout 命令设定超时时间
-        if timeout $timeout_seconds wget -c -qO- $zip_proxy_url | tar xzvf - -C /tmp; then
+        if timeout $timeout_seconds wget -c -qO- $zip_proxy_url | tar xzvf - -C /tmp -T unzip.txt; then
             download_success=true
             echo "下载成功!"
             break
