@@ -39,10 +39,10 @@ if [ ! -f /tmp/tailscale ]; then
     while [ $attempt -le $max_attempts ]; do
         echo "尝试获取最新版本号，尝试次数: $attempt"
         
-        # 从备用网址获取最新版本号
+        # 获取最新版本号
         for url in "${release_urls[@]}"; do
             latest_version=$(wget --tries=5 -c -t 60 -O- "$url" | grep 已从上游同步 | head -1 | cut -d'%' -f 2)
-            
+            echo "网址: $url  结果: $latest_version"
             if [ "$latest_version" != "" ]; then
                 echo "获取成功，版本号：$latest_version"
                 break  # 如果成功获取到版本号，跳出循环
