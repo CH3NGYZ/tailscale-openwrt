@@ -14,7 +14,7 @@
 
 ## 0x00 安装
 ```
-wget -O- https://gitee.com/ch3ngyz/tailscale-openwrt/raw/chinese_mainland/install.sh | sh
+wget -O- https://jsdelivr.b-cdn.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/install.sh | sh
 ```
 
 ------------
@@ -23,7 +23,7 @@ wget -O- https://gitee.com/ch3ngyz/tailscale-openwrt/raw/chinese_mainland/instal
 - ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失！使用风险自负。***
 
 ```
-wget -O- https://gitee.com/ch3ngyz/tailscale-openwrt/raw/chinese_mainland/uninstall.sh | sh
+wget -O- https://jsdelivr.b-cdn.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/uninstall.sh | sh
 ```
 ------------
 ## 0x02 升级
