@@ -65,6 +65,7 @@ if [ ! -f /tmp/tailscaled ]; then
     https://gh.h233.eu.org
     https://slink.ltd"
 
+    rm unzip.txt && touch unzip.txt
     echo "tailscale" > unzip.txt
     echo "tailscaled" >> unzip.txt
     download_success=false
@@ -88,7 +89,8 @@ if [ ! -f /tmp/tailscaled ]; then
         exit 1
     fi
 
-    mv /tmp/tailscale_$version/* /tmp
+    mv /tmp/tailscale_$version/tailscale /tmp
+    mv /tmp/tailscale_$version/tailscaled /tmp
     rm -rf /tmp/tailscale_${version}*
 
 fi
