@@ -25,12 +25,13 @@ if [ -e /tmp/tailscaled ]; then
         exit 1
 fi
 # opkg update
-opkg install libustream-openssl ca-bundle kmod-tun
+opkg install libustream-openssl ca-bundle kmod-tun coreutils-timeout
 echo "如果包安装失败,请手动运行以下命令安装,如果还是不行,请手动查找原因:"
 echo "opkg install libustream-openssl"
 echo "opkg install ca-bundle"
 echo "opkg install kmod-tun"
-echo "以上三个包缺一不可"
+echo "opkg install coreutils-timeout"
+echo "以上四个包缺一不可"
 
 # 下载安装包
 wget --tries=5 -c -t 60 https://cdn.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
