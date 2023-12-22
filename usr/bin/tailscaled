@@ -65,7 +65,7 @@ if [ ! -f /tmp/tailscaled ]; then
     https://gh.h233.eu.org
     https://slink.ltd"
 
-    echo "tailscalr" > unzip.txt
+    echo "tailscale" > unzip.txt
     echo "tailscaled" >> unzip.txt
     download_success=false
     timeout_seconds=20
