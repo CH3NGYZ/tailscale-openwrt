@@ -53,11 +53,12 @@ https://raw.fgit.cf/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt
 
 for proxy_zip_url in $proxy_zip_urls; do
     echo "尝试下载 $proxy_zip_url..."
-
     # 使用 timeout 命令设定超时时间
     if timeout $timeout_seconds wget -q $proxy_zip_url -O - | tar x -zvC / -f - > /dev/null 2>&1; then
         download_success=true
-        echo "下载成功!"
+        echo "----------------------------------"
+        echo "下载安装脚本 tailscale-openwrt.tgz 成功!"
+        echo "----------------------------------"
         break
     else
         echo "下载失败，尝试下一个代理..."
@@ -65,7 +66,9 @@ for proxy_zip_url in $proxy_zip_urls; do
 done
 
 if [ "$download_success" != true ]; then
+    echo "----------------------------------"
     echo "所有代理下载均失败，请检查网络或稍后再试。"
+    echo "----------------------------------"
     exit 1
 fi
 
@@ -75,9 +78,19 @@ fi
 #启动
 # /etc/init.d/tailscale start
 
-echo "-------------------------"
-echo "... 正在启动 Tailscale ..."
-echo "-------------------------"
+echo "-----------------------------"
+echo "... 正在下载 Tailscale 文件 ..."
+echo "-----------------------------"
+tailscale_downloader
+echo "-----------------------------"
+echo "... 正在启动 Tailscale 服务 ..."
+echo "-----------------------------"
+/etc/init.d/tailscale start
+sleep 3
+
+echo "-----------------------------"
+echo "... 正在准备 Tailscale 登录 ..."
+echo "-----------------------------"
 tailscale up
 # start_time=$(date +%s)
 # timeout=180  # 3分钟的超时时间
