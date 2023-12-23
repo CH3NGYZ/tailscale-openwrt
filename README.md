@@ -28,10 +28,13 @@ wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscal
 ------------
 ## 0x02 升级
 - ***由于该脚本通过网络直接将TailScale的可执行文件的最新版本下载到内存中，因此每次启动openwrt时都会下载最新版本。***
-```
+```shell
 reboot
 ```
-
+or
+```shell
+rm -rf /tmp/tailscale* && wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh 
+```
 ------------
 ## 0x03 troubleshoot
 
