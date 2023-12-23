@@ -13,10 +13,11 @@
 ------------
 
 ## 0x00 安装
+全新安装
 ```
 wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
-保留配置重装(常见于本仓库脚本升级,你也想同步升级但想保留登录状态的情况)
+保留配置安装 (常见于本仓库脚本升级,你也想同步升级但想不想卸载,想保留登录状态的情况)
 ```shell
 rm -rf /tmp/tailscale* && wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh && reboot
 ```
