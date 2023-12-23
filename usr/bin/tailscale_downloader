@@ -36,25 +36,41 @@ if [ ! -f /tmp/tailscale ]; then
     https://gh.h233.eu.org
     https://slink.ltd"
 
-    for version_proxy in $version_proxys; do
-        version_proxy_url="$version_proxy/$version_url"
-        get_version=$(timeout $version_timeout wget -c -qO- "$version_proxy_url" | grep 已从上游同步 | head -1 | cut -d'%' -f 2)
-        echo "获取版本号, 网址: $version_proxy_url  结果: $get_version"
+    range="1
+    2
+    3"
+
+    for attempt in $range; do
+        echo "------------------"
+        echo "获取版本号，总第 $attempt 次"
+        echo "------------------"
+        for version_proxy in $version_proxys; do
+            version_proxy_url="$version_proxy/$version_url"
+            get_version=$(timeout $version_timeout wget -c -qO- "$version_proxy_url" | grep 已从上游同步 | head -1 | cut -d'%' -f 2)
+            # echo "获取版本号, 网址: $version_proxy_url  结果: $get_version"
+            if [ "$get_version" != "" ]; then
+               echo "---------------------------------------------"
+                echo "通过代理 $version_proxy 获取版本号：$get_version"
+               echo "---------------------------------------------"
+                latest_version=$get_version
+                break  # 如果成功获取到版本号，跳出循环
+            else
+                echo "--------------------------------------------------------------"
+                echo "通过代理 $version_proxy 获取版本号为空，尝试下一个代理..."
+                echo "--------------------------------------------------------------"
+            fi
+        done
         if [ "$get_version" != "" ]; then
-            echo "-----------------------"
-            echo "获取成功，版本号：$get_version"
-            echo "-----------------------"
-            latest_version=$get_version
-            break  # 如果成功获取到版本号，跳出循环
+            break
         fi
     done
 
     # 如果最终还是无法获取到最新版本号，使用默认版本号
     if [ "$latest_version" = "not_available" ]; then
         latest_version="1.56.1"
-        echo "-------------------------------------"
+        echo "------------------------------------------"
         echo "获取失败，使用内置版本号：$latest_version"
-        echo "-------------------------------------"
+        echo "------------------------------------------"
     fi
 
     version="${latest_version}_${arch}${endianness}"
@@ -71,26 +87,34 @@ if [ ! -f /tmp/tailscale ]; then
     echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
     download_success=false
     timeout_seconds=20
-    for zip_proxy in $zip_proxys; do
-        zip_proxy_url="$zip_proxy/$zip_url"
-        echo "正在下载 $zip_proxy_url..."
-
-        # 使用 timeout 命令设定超时时间
-        if timeout $timeout_seconds wget -c -qO- $zip_proxy_url | tar xzvf - -C /tmp -T /tmp/tailscale_${version}_files.txt > /dev/null 2>&1 ; then
-            download_success=true
-            echo "---------------------------------------"
-            echo "下载 tailscale_${version}.tgz 成功!"
-            echo "---------------------------------------"
+    for attempt in $range; do
+        echo "----------------------"
+        echo "下载zip并解压，总第 $attempt 次"
+        echo "----------------------"
+        for zip_proxy in $zip_proxys; do
+            zip_proxy_url="$zip_proxy/$zip_url"
+            # 使用 timeout 命令设定超时时间
+            if timeout $timeout_seconds wget -c -qO- $zip_proxy_url | tar xzvf - -C /tmp -T /tmp/tailscale_${version}_files.txt > /dev/null 2>&1 ; then
+                download_success=true
+                echo "-------------------------------------------"
+                echo "通过代理 $zip_proxy 下载并解压成功!"
+                echo "-------------------------------------------"
+                break
+            else
+                echo "------------------------------------------------"
+                echo "通过代理 $zip_proxy 下载失败，尝试下一个代理..."
+                echo "------------------------------------------------"
+            fi
+        done
+        if [ "$download_success" = true ]; then
             break
-        else
-            echo "下载失败，尝试下一个代理..."
         fi
     done
 
     if [ "$download_success" != true ]; then
-        echo "---------------------------------------"
+        echo "--------------------------------------------------"
         echo "所有代理下载均失败，请检查网络或稍后再试。"
-        echo "---------------------------------------"
+        echo "--------------------------------------------------"
         exit 1
     fi
 
