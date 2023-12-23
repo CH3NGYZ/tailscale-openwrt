@@ -48,14 +48,11 @@ timeout_seconds=5
 download_success=false
 
 # 代理列表
-proxy_zip_urls="https://mirror.ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
-https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
-https://github.moeyy.xyz/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
-https://gh-proxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
-https://fastly.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
-https://raw.fgit.mxtrans.net/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+proxy_zip_urls="https://fastly.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
 https://gcore.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
 https://jsdelivr.b-cdn.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
+https://mirror.ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 https://raw.fgit.cf/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz"
 
 for proxy_zip_url in $proxy_zip_urls; do
