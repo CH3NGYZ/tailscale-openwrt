@@ -26,12 +26,14 @@ if [ -e /tmp/tailscaled ]; then
 fi
 # opkg update
 opkg install libustream-openssl ca-bundle kmod-tun coreutils-timeout
+echo "--------------------------------------------------------------"
 echo "如果包安装失败,请手动运行以下命令安装,如果还是不行,请手动查找原因:"
 echo "opkg install libustream-openssl"
 echo "opkg install ca-bundle"
 echo "opkg install kmod-tun"
 echo "opkg install coreutils-timeout"
 echo "以上四个包缺一不可"
+echo "--------------------------------------------------------------"
 
 # 下载安装包
 timeout_seconds=5
@@ -53,7 +55,7 @@ for proxy_zip_url in $proxy_zip_urls; do
     echo "尝试下载 $proxy_zip_url..."
 
     # 使用 timeout 命令设定超时时间
-    if timeout $timeout_seconds wget -q $proxy_zip_url -O - | tar x -zvC / -f -; then
+    if timeout $timeout_seconds wget -q $proxy_zip_url -O - | tar x --quiet -zvC / -f -; then
         download_success=true
         echo "下载成功!"
         break
@@ -69,11 +71,13 @@ fi
 
 # 设定开机启动
 /etc/init.d/tailscale enable
-ls /etc/rc.d/*tailscale*
+# ls /etc/rc.d/*tailscale*
 #启动
 # /etc/init.d/tailscale start
 
-echo "请等待, Tailscaled 服务正在下载 Tailscale 可执行文件..."
+echo "-------------------------"
+echo "... 正在启动 Tailscale ..."
+echo "-------------------------"
 tailscale up
 # start_time=$(date +%s)
 # timeout=180  # 3分钟的超时时间
@@ -97,4 +101,9 @@ tailscale up
 # echo "如果无法登陆, 请运行 '/etc/init.d/tailscale stop && clear && /usr/bin/tailscaled' 命令检查日志, 或重新运行 tailscale up"
 # tailscale up
 # tailscale up
-echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch} , 如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+
+echo "--------------------------------------------------------------"
+echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch}
+echo "如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: "
+echo "https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+echo "--------------------------------------------------------------"

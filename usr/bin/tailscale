@@ -2,8 +2,6 @@
 set -e
 if [ ! -f /tmp/tailscale ]; then
     arch=$(uname -m)
-    endianness=""  # 初始化 endianness 变量
-
     if [ "$arch" = "i386" ]; then
         arch=386
     elif [ "$arch" = "x86_64" ]; then
@@ -47,7 +45,7 @@ if [ ! -f /tmp/tailscale ]; then
 
     # 如果最终还是无法获取到最新版本号，使用默认版本号
     if [ "$latest_version" = "not_available" ]; then
-        latest_version="1.54.0"
+        latest_version="1.56.1"
         echo "获取失败，使用内置版本号：$latest_version"
     fi
 
@@ -64,9 +62,12 @@ if [ ! -f /tmp/tailscale ]; then
     https://gh.ddlc.top
     https://gh.h233.eu.org
     https://slink.ltd"
-    rm unzip.txt && touch unzip.txt
-    echo "tailscale" > unzip.txt
-    echo "tailscaled" >> unzip.txt
+
+    if [ -f /tmp/tailscale_${version}_files.txt ]; then
+        rm -f /tmp/tailscale_${version}_files.txt && touch /tmp/tailscale_${version}_files.txt
+        echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
+        echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
+    fi
     download_success=false
     timeout_seconds=20
     for zip_proxy in $zip_proxys; do
@@ -74,7 +75,7 @@ if [ ! -f /tmp/tailscale ]; then
         echo "尝试下载 $zip_proxy_url..."
 
         # 使用 timeout 命令设定超时时间
-        if timeout $timeout_seconds wget -c -qO- $zip_proxy_url | tar xzvf - -C /tmp -T unzip.txt; then
+        if timeout $timeout_seconds wget -c -qO- $zip_proxy_url | tar xzvf - -C /tmp -T /tmp/tailscale_${version}_files.txt; then
             download_success=true
             echo "下载成功!"
             break
