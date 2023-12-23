@@ -26,14 +26,14 @@ if [ -e /tmp/tailscaled ]; then
 fi
 # opkg update
 opkg install libustream-openssl ca-bundle kmod-tun coreutils-timeout
-echo "--------------------------------------------------------------"
+echo "---------------------------------------------------------"
 echo "如果包安装失败,请手动运行以下命令安装,如果还是不行,请手动查找原因:"
 echo "opkg install libustream-openssl"
 echo "opkg install ca-bundle"
 echo "opkg install kmod-tun"
 echo "opkg install coreutils-timeout"
 echo "以上四个包缺一不可"
-echo "--------------------------------------------------------------"
+echo "---------------------------------------------------------"
 
 # 下载安装包
 timeout_seconds=5
@@ -41,21 +41,21 @@ timeout_seconds=5
 download_success=false
 
 # 代理列表
-proxy_zip_urls="https://mirror.ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
+proxy_zip_urls="https://mirror.ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt1.tgz
+https://github.moeyy.xyz/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 https://gh-proxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 https://fastly.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
 https://raw.fgit.mxtrans.net/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 https://gcore.jsdelivr.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
 https://jsdelivr.b-cdn.net/gh/CH3NGYZ/tailscale-openwrt@chinese_mainland/tailscale-openwrt.tgz
-https://github.moeyy.xyz/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz
 https://raw.fgit.cf/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz"
 
 for proxy_zip_url in $proxy_zip_urls; do
     echo "尝试下载 $proxy_zip_url..."
 
     # 使用 timeout 命令设定超时时间
-    if timeout $timeout_seconds wget -q $proxy_zip_url -O - | tar x --quiet -zvC / -f -; then
+    if timeout $timeout_seconds wget -q $proxy_zip_url -O - | tar x -zvC / -f - > /dev/null 2>&1; then
         download_success=true
         echo "下载成功!"
         break

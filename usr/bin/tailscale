@@ -63,11 +63,8 @@ if [ ! -f /tmp/tailscale ]; then
     https://gh.h233.eu.org
     https://slink.ltd"
 
-    if [ -f /tmp/tailscale_${version}_files.txt ]; then
-        rm -f /tmp/tailscale_${version}_files.txt && touch /tmp/tailscale_${version}_files.txt
-        echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
-        echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
-    fi
+    echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
+    echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
     download_success=false
     timeout_seconds=20
     for zip_proxy in $zip_proxys; do
