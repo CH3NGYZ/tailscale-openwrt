@@ -1,27 +1,34 @@
 #!/bin/sh
 arch_=`uname -m`
 if [ "$arch_" == "i386" ]; then
-arch=386
+    arch=386
 elif [ "$arch_" == "x86_64" ]; then
-arch=amd64
+    arch=amd64
 elif [ "$arch_" == "armv7l" ]; then
-arch=arm
+    arch=arm
 elif [ "$arch_" == "aarch64" ]; then
-arch=arm64
+    arch=arm64
 elif [ "$arch_" == "armv8l" ]; then
-arch=arm64
+    arch=arm64
 elif [ "$arch_" == "geode" ]; then
-arch=geode
+    arch=geode
 elif [ "$arch_" == "mips" ]; then
-endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" : ""; exit }'`
+    endianness=`echo -n I | hexdump -o | awk '{ print (substr($2,6,1)=="1") ? "le" : ""; exit }'`
 elif [ "$arch_" == "riscv64" ]; then
-arch=riscv64
+    arch=riscv64
 else
-echo "当前机器的架构是 ${arch_}${endianness} , 脚本内置的架构代码可能不符合您的机器, 请在这个issue留下评论以便作者及时修改脚本: https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+    echo "------------------------------------------------------"
+    echo "当前机器的架构是 ${arch_}${endianness}"
+    echo "脚本内置的架构代码可能有误,不符合您的机器"
+    echo "请在这个issue留下评论以便作者及时修改脚本"
+    echo "https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
+    echo "------------------------------------------------------"
 exit 1
 fi
 if [ -e /tmp/tailscaled ]; then
+        echo "---------------------------"
         echo "存在残留, 请卸载并重启后重试"
+        echo "---------------------------"
         exit 1
 fi
 # opkg update
