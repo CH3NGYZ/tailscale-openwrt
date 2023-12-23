@@ -17,7 +17,7 @@ elif [ "$arch_" == "mips" ]; then
 elif [ "$arch_" == "riscv64" ]; then
     arch=riscv64
 else
-    echo "------------------------------------------------------"
+    echo "INSTALL: --------------------------------------------"
     echo "当前机器的架构是 ${arch_}${endianness}"
     echo "脚本内置的架构代码可能有误,不符合您的机器"
     echo "请在这个issue留下评论以便作者及时修改脚本"
@@ -26,14 +26,15 @@ else
 exit 1
 fi
 if [ -e /tmp/tailscaled ]; then
-        echo "---------------------------"
+        echo "INSTALL: ------------------"
         echo "存在残留, 请卸载并重启后重试"
+        echo "卸载命令: wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh"
         echo "---------------------------"
         exit 1
 fi
 opkg update
 opkg install libustream-openssl ca-bundle kmod-tun coreutils-timeout
-echo "---------------------------------------------------------"
+echo "INSTALL: ------------------------------------------------"
 echo "如果包安装失败,请手动运行以下命令安装,如果还是不行,请手动查找原因:"
 echo "opkg install libustream-openssl"
 echo "opkg install ca-bundle"
@@ -56,11 +57,13 @@ https://mirror.ghproxy.com/https://raw.githubusercontent.com/CH3NGYZ/tailscale-o
 https://raw.fgit.cf/CH3NGYZ/tailscale-openwrt/chinese_mainland/tailscale-openwrt.tgz"
 
 for proxy_zip_url in $proxy_zip_urls; do
-    echo "尝试下载 $proxy_zip_url..."
+    echo "INSTALL: -------------------------"
+    echo "尝试下载 $proxy_zip_url"
+    echo "----------------------------------"
     # 使用 timeout 命令设定超时时间
     if timeout $timeout_seconds wget -q $proxy_zip_url -O - | tar x -zvC / -f - > /dev/null 2>&1; then
         download_success=true
-        echo "----------------------------------"
+        echo "INSTALL: -------------------------"
         echo "下载安装脚本 tailscale-openwrt.tgz 成功!"
         echo "----------------------------------"
         break
@@ -70,7 +73,7 @@ for proxy_zip_url in $proxy_zip_urls; do
 done
 
 if [ "$download_success" != true ]; then
-    echo "----------------------------------"
+    echo "INSTALL: -------------------------"
     echo "所有代理下载均失败，请检查网络或稍后再试。"
     echo "----------------------------------"
     exit 1
@@ -82,18 +85,18 @@ fi
 #启动
 # /etc/init.d/tailscale start
 
-echo "-----------------------------"
-echo "... 正在下载 Tailscale 文件 ..."
+echo "INSTALL: --------------------"
+echo "正在启动 Tailscale 下载器"
 echo "-----------------------------"
 tailscale_downloader
-echo "-----------------------------"
-echo "... 正在启动 Tailscale 服务 ..."
+echo "INSTALL: --------------------"
+echo "正在启动 Tailscale 后台服务"
 echo "-----------------------------"
 /etc/init.d/tailscale start
 sleep 3
 
-echo "-----------------------------"
-echo "... 正在准备 Tailscale 登录 ..."
+echo "INSTALL: --------------------"
+echo "正在启动 Tailscale 前台程序"
 echo "-----------------------------"
 tailscale up
 # start_time=$(date +%s)
@@ -119,7 +122,7 @@ tailscale up
 # tailscale up
 # tailscale up
 
-echo "--------------------------------------------------------------"
+echo "INSTALL: -----------------------------------------------------"
 echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch}"
 echo "如果成功运行, 请在这个issue留下评论以便作者及时修改说明文档: "
 echo "https://github.com/CH3NGYZ/tailscale-openwrt/issues/6"
