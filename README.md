@@ -17,10 +17,7 @@
 ```
 wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
-保留配置安装 (常见于本仓库脚本升级,你也想同步升级但想不想卸载,想保留登录状态的情况)
-```shell
-rm -rf /tmp/tailscale* && wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh && reboot
-```
+
 
 ------------
 
@@ -32,9 +29,16 @@ wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscal
 ```
 ------------
 ## 0x02 升级
-- ***由于该脚本通过网络直接将TailScale的可执行文件的最新版本下载到内存中，因此每次启动openwrt时都会下载最新版本。***
+- 升级tailscale版本
+- ***每次启动openwrt时tailscale_downloader都会通过网络下载最新版本的TailScale的可执行文件。***
 ```shell
 reboot
+```
+
+- 升级脚本
+- ***如果脚本更新 (更新代理地址等), 运行以下命令更新最新脚本***:
+```
+rm -rf /tmp/tailscale* && wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh && reboot
 ```
 ------------
 ## 0x03 troubleshoot
