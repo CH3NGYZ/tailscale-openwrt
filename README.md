@@ -36,7 +36,7 @@ reboot
 ```
 
 - 升级下载器脚本
-- ***如果脚本更新 (更新代理地址等), 运行以下命令更新最新脚本***:
+- ***如果下载器脚本(tailscale_downloader)存在版本更新(更新代理地址等), 运行以下命令更新最新下载器脚本***:
 ```
 rm -rf /tmp/tailscale* && wget -qO- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh && reboot
 ```
