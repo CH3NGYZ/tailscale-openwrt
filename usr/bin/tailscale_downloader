@@ -30,12 +30,12 @@ if [ ! -f /tmp/tailscale ]; then
     latest_version="not_available"
     version_timeout=20
     version_url="https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest"
-    version_proxys="https://mirror.ghproxy.com
-    https://git.xfj0.cn
+    version_proxys="https://git.xfj0.cn
+    https://ghproxy.net
+    https://mirror.ghproxy.com
     https://hub.gitmirror.com
     https://gh.con.sh
     https://slink.ltd
-    https://ghproxy.net
     https://dl.ghpig.top
     https://gh.ddlc.top
     https://gh.h233.eu.org"
@@ -81,15 +81,6 @@ if [ ! -f /tmp/tailscale ]; then
     # echo "正在下载 tailscale_${version}.tgz ..."
     
     zip_url="https://github.com/CH3NGYZ/tailscale-openwrt/releases/download/${latest_version}/tailscale_${version}.tgz"
-    zip_proxys="https://mirror.ghproxy.com
-    https://git.xfj0.cn
-    https://hub.gitmirror.com
-    https://gh.con.sh
-    https://slink.ltd
-    https://ghproxy.net
-    https://dl.ghpig.top
-    https://gh.ddlc.top
-    https://gh.h233.eu.org"
 
     echo -e "tailscale_${version}/tailscale" > /tmp/tailscale_${version}_files.txt
     echo -e "tailscale_${version}/tailscaled" >> /tmp/tailscale_${version}_files.txt
@@ -99,7 +90,7 @@ if [ ! -f /tmp/tailscale ]; then
         # echo "DOWNLOAD: ------------"
         # echo "下载zip并解压，总第 $attempt 次"
         # echo "----------------------"
-        for zip_proxy in $zip_proxys; do
+        for zip_proxy in $version_proxys; do
             zip_proxy_url="$zip_proxy/$zip_url"
             # 使用 timeout 命令设定超时时间
             if timeout $timeout_seconds wget -c -qO- $zip_proxy_url | tar xzvf - -C /tmp -T /tmp/tailscale_${version}_files.txt > /dev/null 2>&1 ; then
