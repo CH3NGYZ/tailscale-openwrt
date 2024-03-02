@@ -4,6 +4,7 @@ set -e
 echo "search lan" > /etc/resolv.conf
 echo "nameserver 223.5.5.5" >> /etc/resolv.conf
 echo "nameserver 119.29.29.29" >> /etc/resolv.conf
+/etc/init.d/network restart
 
 if [ ! -f /tmp/tailscale ]; then
     arch=$(uname -m)
