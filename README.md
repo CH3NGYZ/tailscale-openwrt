@@ -9,7 +9,8 @@
 - 如果您想自定义脚本内容，请fork我的仓库，切换到相应的分支，修改/usr/bin/文件，将下载链接更改为您的仓库，Github Actions会自动将修改后的内容打包到tgz中，并将其上传到当前仓库。然后修改install.sh和Readme.MD文件中的用户名以指向您的仓库。
 > [此分支的安装脚本及tailscale下载器都添加了多个代理, 如果代理全部失效, 请提issue联系我更换代理](https://github.com/CH3NGYZ/tailscale-openwrt/issues/7)
 > 
-![image](https://github.com/CH3NGYZ/tailscale-openwrt/assets/56500405/49e21db2-399a-4cb8-9b87-35d5e47f1641)
+![image](https://github.com/CH3NGYZ/tailscale-openwrt/assets/56500405/3823d18e-ccfd-459f-a45d-b451b8160ced)
+
 > 注：clash for windows/clash verge的TUN模式与DockerDesktop、Tailscale for Windows不兼容, 解决办法: 暂时关闭TUN, 登录/使用完毕后再打开.
 >  [原理](https://chengyunzhe.notion.site/chengyunzhe/clash-for-windows-docker-tailscale-fccff782bd2c482cb9b7d3dd08c58b18)
 ------------
