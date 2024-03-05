@@ -78,11 +78,7 @@ if [ "$download_success" != true ]; then
     exit 1
 fi
 
-# 设定开机启动
 /etc/init.d/tailscale enable
-# ls /etc/rc.d/*tailscale*
-#启动
-# /etc/init.d/tailscale start
 
 echo "INSTALL: --------------"
 echo "正在启动 Tailscale 下载器"
@@ -98,28 +94,6 @@ echo "INSTALL: ----------------"
 echo "正在启动 Tailscale 前台程序"
 echo "-------------------------"
 tailscale up
-# start_time=$(date +%s)
-# timeout=180  # 3分钟的超时时间
-
-# while true; do
-#     if [ -e /tmp/tailscaled ]; then
-#         echo "/tmp/tailscaled 存在, 继续"
-#         break
-#     else
-#         current_time=$(date +%s)
-#         elapsed_time=$((current_time - start_time))
-#         if [ $elapsed_time -ge $timeout ]; then
-#             echo "超时，退出脚本,请手动打开luci界面-系统日志查看失败原因,也可运行 tailscale 查看下载情况"
-#             exit 1
-#         else
-#             sleep 2
-#         fi
-#     fi
-# done
-
-# echo "如果无法登陆, 请运行 '/etc/init.d/tailscale stop && clear && /usr/bin/tailscaled' 命令检查日志, 或重新运行 tailscale up"
-# tailscale up
-# tailscale up
 
 echo "INSTALL: ---------------------------------------------"
 echo "当前机器的架构是 arch_:${arch_}${endianness}| arch:${arch}"
