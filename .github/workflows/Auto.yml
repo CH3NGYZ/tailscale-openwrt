@@ -1,9 +1,9 @@
 on:
  schedule:
    - cron:  "10 23 * * *"
- # workflow_dispatch:
- # watch:
- #    types: [started]
+ workflow_dispatch:
+ watch:
+    types: [started]
 
 jobs:
   sync_tailscale_latest_version:
