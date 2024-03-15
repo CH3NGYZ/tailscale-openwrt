@@ -1,0 +1,73 @@
+on:
+ schedule:
+   - cron:  "10 23 * * *"
+ # workflow_dispatch:
+ # watch:
+ #    types: [started]
+
+jobs:
+  sync_tailscale_latest_version:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Print Repository Owner
+        run: echo "Repository Owner:${{ github.repository_owner }}"
+
+      - name: Set Version
+        id: set_version
+        run: echo "::set-output name=version::${{ github.event.inputs.version }}"
+
+      - name: Get Latest Version
+        id: get_latest_version
+        run: |
+          if [ -z "${{ steps.set_version.outputs.version }}" ]; then
+            latest_version=$(wget -O- https://pkgs.tailscale.com/stable/ | grep tailscale_ | head -1 | cut -d'_' -f 2)
+          else
+            latest_version="${{ steps.set_version.outputs.version }}"
+          fi
+          echo "latest_version=$latest_version" >> $GITHUB_ENV
+          echo $latest_version
+
+      - name: Check Release Existence
+        id: check_release_if_exist
+        run: |
+          code=$(curl -I -m 10 -o /dev/null -s -w %{http_code} "https://codeload.github.com/${{ github.repository_owner }}/tailscale-openwrt/zip/refs/tags/${{ env.latest_version }}")
+          echo "code=$code" >> $GITHUB_ENV
+          echo $code
+
+
+      - name: Download
+        if: env.code == '404'
+        run: |
+          echo "下载文件"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_386.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_amd64.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_arm64.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_arm.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_geode.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_mips.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_mips64.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_mips64le.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_mipsle.tgz"
+          curl --remote-name "https://pkgs.tailscale.com/stable/tailscale_${{ env.latest_version }}_riscv64.tgz"
+          ls
+
+      - name: Create Release and Upload Release Asset
+        if: env.code == '404'
+        uses: softprops/action-gh-release@v1
+        with:
+          tag_name: ${{ env.latest_version }}
+          name: ${{ env.latest_version }}
+          body: 版本 %${{ env.latest_version }}% 已从上游同步
+          draft: false
+          prerelease: false
+          files: |
+            tailscale_${{ env.latest_version }}_386.tgz
+            tailscale_${{ env.latest_version }}_amd64.tgz
+            tailscale_${{ env.latest_version }}_arm64.tgz
+            tailscale_${{ env.latest_version }}_arm.tgz
+            tailscale_${{ env.latest_version }}_geode.tgz
+            tailscale_${{ env.latest_version }}_mips.tgz
+            tailscale_${{ env.latest_version }}_mips64.tgz
+            tailscale_${{ env.latest_version }}_mips64le.tgz
+            tailscale_${{ env.latest_version }}_mipsle.tgz
+            tailscale_${{ env.latest_version }}_riscv64.tgz
