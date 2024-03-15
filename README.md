@@ -47,6 +47,7 @@ rm -rf /tmp/tailscale* && wget -qO- https://ghproxy.net/https://raw.githubuserco
 ------------
 
 #### 如果好用，麻烦动动小手点个Star，谢谢啦！
+## 如果有新版本可用, 但是还没到actions运行时间, 你可以手动点击start触发actions运行, 更新最新版本.
 ------------
 ### 特别感谢:
 [adyanth [openwrt-tailscale-enabler]](https://github.com/adyanth/openwrt-tailscale-enabler) 
