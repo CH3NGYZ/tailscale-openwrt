@@ -36,9 +36,13 @@ if [ ! -f /tmp/tailscale ]; then
     latest_version="not_available"
     version_timeout=20
     version_url="https://github.com/CH3NGYZ/tailscale-openwrt/releases/latest"
-    version_proxys="https://mirror.ghproxy.com
+    version_proxys="https://ghproxy.cc
+    https://git.xfj0.cn
+    https://cors.isteed.cc
+    https://940740.xyz
     https://hub.gitmirror.com
     https://gh.con.sh
+    https://mirror.ghproxy.com
     https://slink.ltd
     https://dl.ghpig.top
     https://gh.ddlc.top
