@@ -18,7 +18,7 @@
 ## 0x00 安装
 全新安装
 ```
-wget -O- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
+wget -O- https://ghproxy.cc/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh
 ```
 
 
@@ -29,7 +29,7 @@ wget -O- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale
 - ***请注意不要在ssh连接期间卸载，因为ssh连接将丢失！使用风险自负。***
 
 ```
-wget -O- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
+wget -O- https://ghproxy.cc/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/uninstall.sh | sh
 ```
 ------------
 ## 0x02 升级
@@ -42,7 +42,7 @@ reboot
 - 保留配置升级
 - ***如果下载器脚本(tailscale_downloader)存在版本更新(更新代理地址等), 运行以下命令更新最新下载器脚本***:
 ```
-rm -rf /tmp/tailscale* && wget -O- https://ghproxy.net/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh && reboot
+rm -rf /tmp/tailscale* && wget -O- https://ghproxy.cc/https://raw.githubusercontent.com/CH3NGYZ/tailscale-openwrt/chinese_mainland/install.sh | sh && reboot
 ```
 ------------
 
